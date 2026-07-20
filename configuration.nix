@@ -79,6 +79,11 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  programs.bash.shellAliases = {
+  sc = "cd /etc/nixos && git add . && git commit -m \"Mise à jour config\" && git push";
+  ff = "fastfetch";
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."chouris" = {
     isNormalUser = true;
@@ -135,8 +140,3 @@
   system.stateVersion = "26.05"; # Did you read the comment?
 
 }
-
-programs.bash.shellAliases = {
-  sc = "cd /etc/nixos && git add . && git commit -m \"Mise à jour config\" && git push";
-  ff = "fastfetch";
-};
