@@ -137,6 +137,6 @@
 }
 
 programs.bash.shellAliases = {
-  saveconfig = "cd /etc/nixos && git add . && git commit -m \"Mise à jour config\" && git push";
+  sc = "cd /etc/nixos && git add . && git commit -m \"Mise à jour config\" && git push";
   ff = "fastfetch";
 };
