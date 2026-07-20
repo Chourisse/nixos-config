@@ -135,3 +135,8 @@
   system.stateVersion = "26.05"; # Did you read the comment?
 
 }
+
+programs.bash.shellAliases = {
+  saveconfig = "cd /etc/nixos && git add . && git commit -m \"Mise à jour config\" && git push";
+  ff = "fastfetch";
+};
