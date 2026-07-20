@@ -15,8 +15,7 @@
 
   # Network
 
-  networking.hostName = "NixOS";
-  networking.wireless.enable = true;
+  networking.hostName = "NixOS"; 
   networking.networkmanager.enable = true;
 
   # Time zone & co
@@ -85,8 +84,9 @@
     fastfetch
     vesktop
     librewolf
-    steam
   ];
+
+  programs.steam.enable = true;
 
   system.stateVersion = "26.05";
 
