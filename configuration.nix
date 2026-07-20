@@ -21,6 +21,9 @@
   networking.hostName = "NixOS"; 
   networking.networkmanager.enable = true;
 
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+
   # Time zone & co
   time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -48,6 +51,9 @@
     layout = "us";
     variant = "";
   };
+
+  hardware.enableRedistributableFirmware = true;
+  programs.nix-ld.enable = true;
 
   # Pipewire
   services.pulseaudio.enable = false;
@@ -99,6 +105,10 @@
   };
 
   nix.settings.auto-optimise-store = true;
+
+  boot.tmp.cleanOnBoot = true;
+
+  services.fstrim.enable = true;
 
   system.stateVersion = "26.05";
 
