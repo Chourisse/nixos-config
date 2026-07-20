@@ -111,6 +111,7 @@
     fastfetch
     vesktop
     librewolf
+    btop
   ];
 
   # Programs & Gaming
