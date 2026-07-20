@@ -97,6 +97,8 @@
 
   programs.steam.enable = true;
 
+  programs.gamemode.enable = true;
+
   # Auto cleanup
   nix.gc = {
     automatic = true;
@@ -109,6 +111,8 @@
   boot.tmp.cleanOnBoot = true;
 
   services.fstrim.enable = true;
+
+  services.fwupd.enable = true;
 
   system.stateVersion = "26.05";
 
