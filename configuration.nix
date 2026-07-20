@@ -6,8 +6,11 @@
       ./hardware-configuration.nix
     ];
 
-  # Bootloader
-  boot.loader.systemd-boot.enable = true;
+  # Bootloader (GRUB)
+  boot.loader.systemd-boot.enable = false;
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "nodev";
+  boot.loader.grub.efiSupport = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use latest kernel
