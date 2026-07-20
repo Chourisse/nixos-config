@@ -1,91 +1,109 @@
+
 { config, pkgs, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
-  # Bootloader (GRUB)
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.efiSupport = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub.theme = ./themes/CRT;
+  # Bootloader & Kernel
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+    tmp.cleanOnBoot = true;
 
-  # Use latest kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+    loader = {
+      efi.canTouchEfiVariables = true;
+      grub = {
+        enable = true;
+        device = "nodev";
+        efiSupport = true;
+        theme = ./themes/CRT;
+      };
+    };
+  };
 
-  # Network
+  # Networking & Hardware
+  networking = {
+    hostName = "NixOS";
+    networkmanager.enable = true;
+  };
 
-  networking.hostName = "NixOS"; 
-  networking.networkmanager.enable = true;
+  hardware = {
+    bluetooth.enable = true;
+    enableRedistributableFirmware = true;
+  };
 
-  # Bluetooth
-  hardware.bluetooth.enable = true;
+  zramSwap.enable = true;
 
-  # Time zone & co
+  # Localization
   time.timeZone = "Europe/Paris";
-  i18n.defaultLocale = "en_US.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "fr_FR.UTF-8";
-    LC_IDENTIFICATION = "fr_FR.UTF-8";
-    LC_MEASUREMENT = "fr_FR.UTF-8";
-    LC_MONETARY = "fr_FR.UTF-8";
-    LC_NAME = "fr_FR.UTF-8";
-    LC_NUMERIC = "fr_FR.UTF-8";
-    LC_PAPER = "fr_FR.UTF-8";
-    LC_TELEPHONE = "fr_FR.UTF-8";
-    LC_TIME = "fr_FR.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "fr_FR.UTF-8";
+      LC_IDENTIFICATION = "fr_FR.UTF-8";
+      LC_MEASUREMENT = "fr_FR.UTF-8";
+      LC_MONETARY = "fr_FR.UTF-8";
+      LC_NAME = "fr_FR.UTF-8";
+      LC_NUMERIC = "fr_FR.UTF-8";
+      LC_PAPER = "fr_FR.UTF-8";
+      LC_TELEPHONE = "fr_FR.UTF-8";
+      LC_TIME = "fr_FR.UTF-8";
+    };
   };
 
-  # X11 windowing system
-  services.xserver.enable = true;
+  # Services & Desktop Environment
+  services = {
+    xserver = {
+      enable = true;
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
+    };
 
-  # KDE Plasma
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+    displayManager.sddm.enable = true;
+    desktopManager.plasma6.enable = true;
 
-  # Configure X11 keymap
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+    fstrim.enable = true;
+    fwupd.enable = true;
+
+    pulseaudio.enable = false;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
   };
 
-  hardware.enableRedistributableFirmware = true;
-  programs.nix-ld.enable = true;
-
-  # Pipewire
-  services.pulseaudio.enable = false;
+  # Required for PipeWire real-time scheduling
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
+
+  # Nix Package Manager
+  nixpkgs.config.allowUnfree = true;
+
+  nix = {
+    settings.auto-optimise-store = true;
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 14d";
+    };
   };
 
-  programs.bash.shellAliases = {
-  sc = "cd /etc/nixos && git add . && git commit -m \"Mise à jour config\" && git push";
-  ff = "fastfetch";
-  rs = "sudo nixos-rebuild switch";
-  };
-
-  # User account
+  # User Configuration
   users.users."chouris" = {
     isNormalUser = true;
     description = "Chouris";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
-    #  thunderbird
+      # thunderbird
     ];
   };
 
-  # Unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List of packages.
+  # System Packages
   environment.systemPackages = with pkgs; [
     neovim
     git
@@ -95,27 +113,20 @@
     librewolf
   ];
 
-  programs.steam.enable = true;
+  # Programs & Gaming
+  programs = {
+    steam.enable = true;
+    gamemode.enable = true;
+    
+    # Enables unpatched dynamic binaries execution on NixOS
+    nix-ld.enable = true;
 
-  programs.gamemode.enable = true;
-
-  # Auto cleanup
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 14d";
+    bash.shellAliases = {
+      sc = "cd /etc/nixos && git add . && git commit -m \"Mise à jour config\" && git push";
+      ff = "fastfetch";
+      rs = "sudo nixos-rebuild switch";
+    };
   };
 
-  nix.settings.auto-optimise-store = true;
-
-  boot.tmp.cleanOnBoot = true;
-
-  services.fstrim.enable = true;
-
-  services.fwupd.enable = true;
-
-  zramSwap.enable = true;
-
   system.stateVersion = "26.05";
-
 }
