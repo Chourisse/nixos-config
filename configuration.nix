@@ -8,7 +8,7 @@
   # Bootloader & Kernel
   boot = {
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
-    kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
+    kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" "acpi_enforce_resources=lax" ];
     tmp.cleanOnBoot = true;
 
     loader = {
@@ -149,17 +149,16 @@
 
     # Enables unpatched dynamic binaries execution on NixOS
     nix-ld.enable = true;
+  };
 
-    bash.shellAliases = {
+  # Fish configuration, Aliases & Fastfetch auto start
+  programs.fish = {
+    enable = true;
+    shellAliases = {
       sc = "cd /etc/nixos && git add . && git commit -m \"Mise à jour config\" && git push";
       ff = "fastfetch";
       rs = "sudo nixos-rebuild switch";
     };
-  };
-
-  # Fish configuration & Fastfetch auto start
-  programs.fish = {
-    enable = true;
     interactiveShellInit = ''
       set fish_greeting
       fastfetch
