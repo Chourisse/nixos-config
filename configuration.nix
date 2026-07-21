@@ -110,6 +110,8 @@
     };
     desktopManager.plasma6.enable = true;
 
+    hardware.deepcool-digital-linux.enable = true;
+
     # Services d'optimisation et matériels
     fstrim.enable = true;
     fwupd.enable = true;
