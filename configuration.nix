@@ -5,7 +5,9 @@
     ./hardware-configuration.nix
   ];
 
-  # Bootloader & Kernel
+  # ==========================================
+  # 1. Système & Démarrage
+  # ==========================================
   boot = {
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
     kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" "acpi_enforce_resources=lax" ];
@@ -22,7 +24,9 @@
     };
   };
 
-  # Networking & Hardware
+  # ==========================================
+  # 2. Matériel & Réseau
+  # ==========================================
   networking = {
     hostName = "NixOS";
     networkmanager.enable = true;
@@ -31,14 +35,27 @@
   hardware = {
     bluetooth.enable = true;
     enableRedistributableFirmware = true;
-    graphics.enable32Bit = true;
     amdgpu.overdrive.enable = true;
+    
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
   };
 
   zramSwap.enable = true;
 
-  # Localization
+  # Règles pour la consommation CPU (Wattage)
+  systemd.tmpfiles.rules = [
+    "z /sys/class/hwmon/hwmon*/power*_input 0444 root root -"
+    "z /sys/class/powercap/intel-rapl:*/energy_uj 0444 root root -"
+  ];
+
+  # ==========================================
+  # 3. Localisation & Polices
+  # ==========================================
   time.timeZone = "Europe/Paris";
+  
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
@@ -54,23 +71,26 @@
     };
   };
 
-  # Fonts
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-color-emoji
-    inter
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.fira-code
-  ];
-
-  fonts.fontconfig.defaultFonts = {
-    serif = [ "Noto Serif" ];
-    sansSerif = [ "Inter" ];
-    monospace = [ "JetBrainsMono Nerd Font" ];
+  fonts = {
+    packages = with pkgs; [
+      noto-fonts
+      noto-fonts-color-emoji
+      inter
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.fira-code
+    ];
+    fontconfig.defaultFonts = {
+      serif = [ "Noto Serif" ];
+      sansSerif = [ "Inter" ];
+      monospace = [ "JetBrainsMono Nerd Font" ];
+    };
   };
 
-  # Services & Desktop Environment
+  # ==========================================
+  # 4. Environnement de Bureau & Services
+  # ==========================================
   services = {
+    # Serveur X
     xserver = {
       enable = true;
       xkb = {
@@ -79,13 +99,22 @@
       };
     };
 
+    # Gestionnaire de bureau
     displayManager.sddm.enable = true;
     desktopManager.plasma6.enable = true;
 
+    # Services d'optimisation et matériels
     fstrim.enable = true;
     fwupd.enable = true;
     lact.enable = true;
 
+    # Mullvad VPN (Daemon et CLI uniquement, pas d'interface graphique)
+    mullvad-vpn = {
+      enable = true;
+      package = pkgs.mullvad; 
+    };
+
+    # Gestion du Son (PipeWire)
     pulseaudio.enable = false;
     pipewire = {
       enable = true;
@@ -95,10 +124,38 @@
     };
   };
 
-  # Required for PipeWire real-time scheduling
+  # Requis pour la planification temps réel de PipeWire
   security.rtkit.enable = true;
 
-  # Nix Package Manager
+  # ==========================================
+  # 5. Programmes & Jeux
+  # ==========================================
+  programs = {
+    steam.enable = true;
+    gamemode.enable = true;
+    gamescope.enable = true;
+
+    # Permet l'exécution de binaires dynamiques non patchés sur NixOS
+    nix-ld.enable = true;
+
+    # Fish : Configuration, Alias et Lancement automatique de Fastfetch
+    fish = {
+      enable = true;
+      shellAliases = {
+        sc = "cd /etc/nixos && git add . && git commit -m \"Mise à jour config\" && git push";
+        ff = "fastfetch";
+        rs = "sudo nixos-rebuild switch";
+      };
+      interactiveShellInit = ''
+        set fish_greeting
+        fastfetch
+      '';
+    };
+  };
+
+  # ==========================================
+  # 6. Paquets Système & Gestionnaire Nix
+  # ==========================================
   nixpkgs.config.allowUnfree = true;
 
   nix = {
@@ -110,18 +167,6 @@
     };
   };
 
-  # User Configuration
-  users.users."chouris" = {
-    isNormalUser = true;
-    description = "Chouris";
-    extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.fish;
-    packages = with pkgs; [
-      kdePackages.kate
-    ];
-  };
-
-  # System Packages
   environment.systemPackages = with pkgs; [
     neovim
     git
@@ -141,35 +186,18 @@
     pinta
   ];
 
-  # Programs & Gaming
-  programs = {
-    steam.enable = true;
-    gamemode.enable = true;
-    gamescope.enable = true;
-
-    # Enables unpatched dynamic binaries execution on NixOS
-    nix-ld.enable = true;
+  # ==========================================
+  # 7. Utilisateurs & Groupes
+  # ==========================================
+  users.users."chouris" = {
+    isNormalUser = true;
+    description = "Chouris";
+    extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.fish;
+    packages = with pkgs; [
+      kdePackages.kate
+    ];
   };
-
-  # Fish configuration, Aliases & Fastfetch auto start
-  programs.fish = {
-    enable = true;
-    shellAliases = {
-      sc = "cd /etc/nixos && git add . && git commit -m \"Mise à jour config\" && git push";
-      ff = "fastfetch";
-      rs = "sudo nixos-rebuild switch";
-    };
-    interactiveShellInit = ''
-      set fish_greeting
-      fastfetch
-    '';
-  };
-
-  # Cpu wattage rules
-  systemd.tmpfiles.rules = [
-    "z /sys/class/hwmon/hwmon*/power*_input 0444 root root -"
-    "z /sys/class/powercap/intel-rapl:*/energy_uj 0444 root root -"
-  ];
 
   system.stateVersion = "26.05";
 }
