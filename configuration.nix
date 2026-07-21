@@ -157,10 +157,10 @@
     };
   };
 
-  # PLATYPUS Bypass
-   services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="hwmon", ATTR{name}=="k10temp", TAG+="uaccess"
-  ''; 
+  systemd.services.fix-hwmon = {
+    wantedBy = [ "multi-user.target" ];
+    script = "chmod -R a+r /sys/class/hwmon/hwmon*/power* 2>/dev/null || true";
+  };
 
   system.stateVersion = "26.05";
 }
