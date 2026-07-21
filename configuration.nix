@@ -113,6 +113,7 @@
     librewolf
     btop
     topgrade
+    lact
   ];
 
   # Programs & Gaming
