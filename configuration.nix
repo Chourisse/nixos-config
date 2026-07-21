@@ -113,10 +113,12 @@
     librewolf
     btop
     topgrade
-    lact
   ];
 
   # Programs & Gaming
+
+  services.lact.enable = true;
+
   programs = {
     steam.enable = true;
     gamemode.enable = true;
