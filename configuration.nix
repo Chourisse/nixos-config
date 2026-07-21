@@ -197,6 +197,7 @@
     standardnotes
     rustdesk-flutter
     pinta
+    kdePackages.partitionmanager
   ];
 
   # ==========================================
