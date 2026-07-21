@@ -127,7 +127,7 @@
     git
     kitty
     fastfetch
-    vesktop
+    goofcord
     librewolf
     (btop.override { rocmSupport = true; })
     topgrade
