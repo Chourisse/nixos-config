@@ -1,4 +1,3 @@
-
 { config, pkgs, ... }:
 
 {
@@ -9,6 +8,7 @@
   # Bootloader & Kernel
   boot = {
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
     tmp.cleanOnBoot = true;
 
     loader = {
@@ -31,6 +31,8 @@
   hardware = {
     bluetooth.enable = true;
     enableRedistributableFirmware = true;
+    graphics.enable32Bit = true;
+    amdgpu.overdrive.enable = true;
   };
 
   zramSwap.enable = true;
@@ -67,6 +69,7 @@
 
     fstrim.enable = true;
     fwupd.enable = true;
+    lact.enable = true;
 
     pulseaudio.enable = false;
     pipewire = {
@@ -115,20 +118,15 @@
     topgrade
     goverlay
     mangohud
+    protonup-qt
   ];
 
   # Programs & Gaming
-
-  services.lact.enable = true;
-  hardware.amdgpu.overdrive.enable = true;
-  boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
-
-  hardware.graphics.enable32Bit = true;
-
   programs = {
     steam.enable = true;
     gamemode.enable = true;
-    
+    gamescope.enable = true;
+
     # Enables unpatched dynamic binaries execution on NixOS
     nix-ld.enable = true;
 
