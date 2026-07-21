@@ -22,11 +22,6 @@
     };
   };
 
-  # CPU power
-  boot.kernelModules = [ "zenpower" ];
-  boot.extraModulePackages = with config.boot.kernelPackages; [ zenpower ];
-  boot.blacklistedKernelModules = [ "k10temp" ];
-
   # Networking & Hardware
   networking = {
     hostName = "NixOS";
@@ -161,6 +156,11 @@
       rs = "sudo nixos-rebuild switch";
     };
   };
+
+  # PLATYPUS Bypass
+   services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="hwmon", ATTR{name}=="k10temp", TAG+="uaccess"
+  ''; 
 
   system.stateVersion = "26.05";
 }
