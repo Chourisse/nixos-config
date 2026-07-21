@@ -118,6 +118,7 @@
   # Programs & Gaming
 
   services.lact.enable = true;
+  hardware.amdgpu.overdrive.enable = true;
 
   programs = {
     steam.enable = true;
