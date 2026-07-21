@@ -110,7 +110,10 @@
     };
     desktopManager.plasma6.enable = true;
 
-    hardware.deepcool-digital-linux.enable = true;
+    hardware.deepcool-digital-linux = {
+      enable = true;
+      extraArgs = [ "--mode" "gpu" ];
+    };
 
     # Services d'optimisation et matériels
     fstrim.enable = true;
