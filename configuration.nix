@@ -119,6 +119,7 @@
 
   services.lact.enable = true;
   hardware.amdgpu.overdrive.enable = true;
+  boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
 
   programs = {
     steam.enable = true;
