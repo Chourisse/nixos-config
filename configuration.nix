@@ -129,7 +129,7 @@
     fastfetch
     vesktop
     librewolf
-    btop
+    (btop.override { rocmSupport = true; })
     topgrade
     goverlay
     mangohud
