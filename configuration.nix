@@ -121,6 +121,8 @@
   hardware.amdgpu.overdrive.enable = true;
   boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
 
+  hardware.graphics.enable32Bit = true;
+
   programs = {
     steam.enable = true;
     gamemode.enable = true;
