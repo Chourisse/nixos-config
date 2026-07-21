@@ -56,17 +56,17 @@
 
   # Fonts
   fonts.packages = with pkgs; [
-  noto-fonts
-  noto-fonts-color-emoji
-  inter
-  nerd-fonts.jetbrains-mono
-  nerd-fonts.fira-code
+    noto-fonts
+    noto-fonts-color-emoji
+    inter
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.fira-code
   ];
 
   fonts.fontconfig.defaultFonts = {
-  serif = [ "Noto Serif" ];
-  sansSerif = [ "Inter" ];
-  monospace = [ "JetBrainsMono Nerd Font" ];
+    serif = [ "Noto Serif" ];
+    sansSerif = [ "Inter" ];
+    monospace = [ "JetBrainsMono Nerd Font" ];
   };
 
   # Services & Desktop Environment
@@ -115,9 +115,9 @@
     isNormalUser = true;
     description = "Chouris";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.fish;
     packages = with pkgs; [
       kdePackages.kate
-      # thunderbird
     ];
   };
 
@@ -157,6 +157,16 @@
     };
   };
 
+  # Fish configuration & Fastfetch auto start
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      set fish_greeting
+      fastfetch
+    '';
+  };
+
+  # Cpu wattage rules
   systemd.tmpfiles.rules = [
     "z /sys/class/hwmon/hwmon*/power*_input 0444 root root -"
     "z /sys/class/powercap/intel-rapl:*/energy_uj 0444 root root -"
