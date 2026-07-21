@@ -113,7 +113,6 @@
     librewolf
     btop
     topgrade
-    gamemode
     goverlay
     mangohud
   ];
