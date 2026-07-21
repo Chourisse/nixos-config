@@ -119,6 +119,7 @@
     goverlay
     mangohud
     protonup-qt
+    prismlauncher
   ];
 
   # Programs & Gaming
