@@ -120,6 +120,7 @@
     mangohud
     protonup-qt
     prismlauncher
+    zed-editor
   ];
 
   # Programs & Gaming
