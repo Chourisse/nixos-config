@@ -121,6 +121,7 @@
     protonup-qt
     prismlauncher
     zed-editor
+    standardnotes
   ];
 
   # Programs & Gaming
