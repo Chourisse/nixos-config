@@ -22,6 +22,11 @@
     };
   };
 
+  # CPU power
+  boot.kernelModules = [ "zenpower" ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [ zenpower ];
+  boot.blacklistedKernelModules = [ "k10temp" ];
+
   # Networking & Hardware
   networking = {
     hostName = "NixOS";
