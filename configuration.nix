@@ -45,7 +45,7 @@
 
   zramSwap.enable = true;
 
-  # Règles pour la consommation CPU (Wattage)
+  # Consommation CPU (Wattage)
   systemd.tmpfiles.rules = [
     "z /sys/class/hwmon/hwmon*/power*_input 0444 root root -"
     "z /sys/class/powercap/intel-rapl:*/energy_uj 0444 root root -"
@@ -108,7 +108,7 @@
     fwupd.enable = true;
     lact.enable = true;
 
-    # Mullvad VPN (Daemon et CLI uniquement, pas d'interface graphique)
+    # Mullvad VPN (Daemon et CLI uniquement)
     mullvad-vpn = {
       enable = true;
       package = pkgs.mullvad; 
