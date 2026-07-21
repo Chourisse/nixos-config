@@ -122,6 +122,8 @@
     prismlauncher
     zed-editor
     standardnotes
+    rustdesk-flutter
+    pinta
   ];
 
   # Programs & Gaming
