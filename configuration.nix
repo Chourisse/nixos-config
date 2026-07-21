@@ -100,8 +100,14 @@
       };
     };
 
-    # Gestionnaire de bureau
-    displayManager.sddm.enable = true;
+    # Gestionnaire de bureau et Connexion automatique
+    displayManager = {
+      sddm.enable = true;
+      autoLogin = {
+        enable = true;
+        user = "chouris";
+      };
+    };
     desktopManager.plasma6.enable = true;
 
     # Services d'optimisation et matériels
