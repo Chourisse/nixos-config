@@ -157,10 +157,5 @@
     };
   };
 
-  systemd.services.fix-hwmon = {
-    wantedBy = [ "multi-user.target" ];
-    script = "chmod -R a+r /sys/class/hwmon/hwmon*/power* 2>/dev/null || true";
-  };
-
   system.stateVersion = "26.05";
 }
