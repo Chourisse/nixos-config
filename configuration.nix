@@ -112,6 +112,7 @@
     vesktop
     librewolf
     btop
+    topgrade
   ];
 
   # Programs & Gaming
