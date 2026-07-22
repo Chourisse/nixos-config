@@ -157,6 +157,7 @@
         sc = "cd /etc/nixos && git add . && git commit -m \"Mise à jour config\" && git push";
         ff = "fastfetch";
         rs = "sudo nixos-rebuild switch";
+	tg = "topgrade";
       };
       interactiveShellInit = ''
         set fish_greeting
