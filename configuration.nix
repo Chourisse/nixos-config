@@ -214,5 +214,11 @@
     ];
   };
 
+  fileSystems."/mnt/Jeux" = {
+    device = "/dev/disk/by-uuid/7453a42d-1429-4f7b-b634-adfb44942655";
+    fsType = "ext4";
+    options = [ "defaults" "noatime" ];
+  };
+
   system.stateVersion = "26.05";
 }
