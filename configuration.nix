@@ -195,7 +195,6 @@ in
     git
     kitty
     fastfetch
-    goofcord
     librewolf
     (btop.override { rocmSupport = true; })
     topgrade
