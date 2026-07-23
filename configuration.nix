@@ -1,8 +1,15 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
+let
+  # Utilisation de flake-compat pour charger le module Lanzaboote
+  lanzaboote = import (builtins.fetchTarball "https://github.com/edolstra/flake-compat/archive/master.tar.gz") {
+    src = builtins.fetchTarball "https://github.com/nix-community/lanzaboote/archive/master.tar.gz";
+  };
+in
 {
   imports = [
     ./hardware-configuration.nix
+    lanzaboote.defaultNix.nixosModules.lanzaboote
   ];
 
   # ==========================================
@@ -13,14 +20,16 @@
     kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" "acpi_enforce_resources=lax" ];
     tmp.cleanOnBoot = true;
 
-    loader = {
-      efi.canTouchEfiVariables = true;
-      grub = {
-        enable = true;
-        device = "nodev";
-        efiSupport = true;
-        theme = ./themes/CRT;
-      };
+    # Configuration de l'EFI
+    loader.efi.canTouchEfiVariables = true;
+    
+    # Desactivation de systemd-boot
+    loader.systemd-boot.enable = lib.mkForce false;
+
+    # Lanzaboote
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
     };
   };
 
@@ -157,7 +166,7 @@
         sc = "cd /etc/nixos && git add . && git commit -m \"Mise à jour config\" && git push";
         ff = "fastfetch";
         rs = "sudo nixos-rebuild switch";
-	tg = "topgrade";
+        tg = "topgrade";
       };
       interactiveShellInit = ''
         set fish_greeting
@@ -199,6 +208,7 @@
     rustdesk-flutter
     pinta
     kdePackages.partitionmanager
+    sbctl 
   ];
 
   # ==========================================
