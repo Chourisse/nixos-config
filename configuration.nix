@@ -208,7 +208,6 @@ in
     pinta
     kdePackages.partitionmanager
     sbctl
-    vencord
   ];
 
   # ==========================================
