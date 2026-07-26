@@ -207,7 +207,8 @@ in
     rustdesk-flutter
     pinta
     kdePackages.partitionmanager
-    sbctl 
+    sbctl
+    vencord
   ];
 
   # ==========================================
