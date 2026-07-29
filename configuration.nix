@@ -1,15 +1,8 @@
 { config, pkgs, lib, ... }:
 
-let
-  # Utilisation de flake-compat pour charger le module Lanzaboote
-  lanzaboote = import (builtins.fetchTarball "https://github.com/edolstra/flake-compat/archive/master.tar.gz") {
-    src = builtins.fetchTarball "https://github.com/nix-community/lanzaboote/archive/master.tar.gz";
-  };
-in
 {
   imports = [
     ./hardware-configuration.nix
-    lanzaboote.defaultNix.nixosModules.lanzaboote
   ];
 
   # ==========================================
@@ -22,11 +15,11 @@ in
 
     # Configuration de l'EFI
     loader.efi.canTouchEfiVariables = true;
-    
+
     # Desactivation de systemd-boot
     loader.systemd-boot.enable = lib.mkForce false;
 
-    # Lanzaboote
+    # Lanzaboote (module fourni par flake.nix)
     lanzaboote = {
       enable = true;
       pkiBundle = "/etc/secureboot";
@@ -46,7 +39,7 @@ in
     bluetooth.enable = true;
     enableRedistributableFirmware = true;
     amdgpu.overdrive.enable = true;
-    
+
     graphics = {
       enable = true;
       enable32Bit = true;
@@ -65,7 +58,7 @@ in
   # 3. Localisation & Polices
   # ==========================================
   time.timeZone = "Europe/Paris";
-  
+
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
@@ -132,7 +125,7 @@ in
     # Mullvad VPN (Daemon et CLI uniquement)
     mullvad-vpn = {
       enable = true;
-      package = pkgs.mullvad; 
+      package = pkgs.mullvad;
     };
 
     # Gestion du Son (PipeWire)
@@ -159,20 +152,7 @@ in
     # Permet l'exécution de binaires dynamiques non patchés sur NixOS
     nix-ld.enable = true;
 
-    # Fish : Configuration, Alias et Lancement automatique de Fastfetch
-    fish = {
-      enable = true;
-      shellAliases = {
-        sc = "cd /etc/nixos && git add . && git commit -m \"Mise à jour config\" && git push";
-        ff = "fastfetch";
-        rs = "sudo nixos-rebuild switch";
-        tg = "topgrade -y";
-      };
-      interactiveShellInit = ''
-        set fish_greeting
-        fastfetch
-      '';
-    };
+    fish.enable = true;
   };
 
   # ==========================================
@@ -181,9 +161,9 @@ in
   nixpkgs.config.allowUnfree = true;
 
   nix = {
-   settings = {
-    auto-optimise-store = true;
-    experimental-features = [ "nix-command" "flakes" ];
+    settings = {
+      auto-optimise-store = true;
+      experimental-features = [ "nix-command" "flakes" ];
     };
     gc = {
       automatic = true;
@@ -194,21 +174,7 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    neovim
     git
-    kitty
-    fastfetch
-    librewolf
-    (btop.override { rocmSupport = true; })
-    topgrade
-    goverlay
-    mangohud
-    protonup-qt
-    prismlauncher
-    zed-editor
-    standardnotes
-    rustdesk-flutter
-    pinta
     kdePackages.partitionmanager
     sbctl
   ];
@@ -221,9 +187,6 @@ in
     description = "Chouris";
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.fish;
-    packages = with pkgs; [
-      kdePackages.kate
-    ];
   };
 
   system.stateVersion = "26.05";
