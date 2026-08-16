@@ -39,5 +39,6 @@
     rustdesk-flutter
     pinta
     vesktop
+    er-patcher
   ];
 }
