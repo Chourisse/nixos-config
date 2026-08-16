@@ -38,5 +38,6 @@
     standardnotes
     rustdesk-flutter
     pinta
+    vesktop
   ];
 }
