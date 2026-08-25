@@ -10,7 +10,7 @@
   # ==========================================
   boot = {
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
-    kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" "acpi_enforce_resources=lax" ];
+    kernelParams = [ "acpi_enforce_resources=lax" ];
     tmp.cleanOnBoot = true;
 
     # Configuration de l'EFI
