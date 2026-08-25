@@ -48,6 +48,11 @@
 
   zramSwap.enable = true;
 
+  # Optimisations BTRFS 
+  fileSystems."/".options = [ "compress=zstd" "noatime" "discard=async" ];
+  fileSystems."/home".options = [ "subvol=home" "compress=zstd" "noatime" "discard=async" ];
+  fileSystems."/nix".options = [ "subvol=nix" "compress=zstd" "noatime" "discard=async" ];
+
   # Consommation CPU (Wattage)
   systemd.tmpfiles.rules = [
     "z /sys/class/hwmon/hwmon*/power*_input 0444 root root -"
