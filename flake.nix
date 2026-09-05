@@ -19,6 +19,7 @@
   outputs = { self, nixpkgs, home-manager, lanzaboote, chaotic, ... }: {
     nixosConfigurations.NixOS = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+      specialArgs = { inherit chaotic; };
       modules = [
         ./configuration.nix
         lanzaboote.nixosModules.lanzaboote

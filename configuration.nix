@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, chaotic, ... }:
 
 {
   imports = [
@@ -152,7 +152,10 @@
   programs = {
     steam.enable = true;
     gamemode.enable = true;
-    gamescope.enable = true;
+    gamescope = {
+        enable = true;
+        package = chaotic.packages.${pkgs.system}.gamescope_git;
+  };
 
     # Permet l'exécution de binaires dynamiques non patchés sur NixOS
     nix-ld.enable = true;
@@ -165,6 +168,7 @@
   # ==========================================
   nixpkgs.config.allowUnfree = true;
   chaotic.nyx.cache.enable = true;
+  chaotic.mesa-git.enable = true;
 
   nix = {
     settings = {
