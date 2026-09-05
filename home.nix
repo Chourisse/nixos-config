@@ -40,5 +40,6 @@
     pinta
     vesktop
     python3
+    appimage-run
   ];
 }
