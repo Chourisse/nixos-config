@@ -9,7 +9,7 @@
   # 1. Système & Démarrage
   # ==========================================
   boot = {
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = pkgs.linuxPackages_cachyos;
     kernelParams = [ "acpi_enforce_resources=lax" ];
     tmp.cleanOnBoot = true;
 
@@ -48,7 +48,7 @@
 
   zramSwap.enable = true;
 
-  # Optimisations BTRFS 
+  # Optimisations BTRFS
   fileSystems."/".options = [ "compress=zstd" "noatime" "discard=async" ];
   fileSystems."/home".options = [ "subvol=home" "compress=zstd" "noatime" "discard=async" ];
   fileSystems."/nix".options = [ "subvol=nix" "compress=zstd" "noatime" "discard=async" ];
@@ -164,6 +164,7 @@
   # 6. Paquets Système & Gestionnaire Nix
   # ==========================================
   nixpkgs.config.allowUnfree = true;
+  chaotic.nyx.cache.enable = true;
 
   nix = {
     settings = {

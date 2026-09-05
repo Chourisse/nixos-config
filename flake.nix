@@ -1,8 +1,9 @@
 {
   description = "Configuration NixOS";
 
-inputs = {
+  inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -15,12 +16,13 @@ inputs = {
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, lanzaboote, ... }: {
+  outputs = { self, nixpkgs, home-manager, lanzaboote, chaotic, ... }: {
     nixosConfigurations.NixOS = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
         lanzaboote.nixosModules.lanzaboote
+        chaotic.nixosModules.default
 
         home-manager.nixosModules.home-manager
         {
