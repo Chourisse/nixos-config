@@ -127,10 +127,10 @@
     fwupd.enable = true;
     lact.enable = true;
 
-    # Mullvad VPN (Daemon et CLI uniquement)
+    # Mullvad VPN
     mullvad-vpn = {
       enable = true;
-      package = pkgs.mullvad;
+      gui.enable = true;
     };
 
     # Gestion du Son (PipeWire)
