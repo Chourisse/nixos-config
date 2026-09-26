@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    comfyui-nix.url = "github:utensils/comfyui-nix";
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -16,7 +17,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, lanzaboote, chaotic, ... }: {
+  outputs = { self, nixpkgs, home-manager, lanzaboote, chaotic, comfyui-nix, ... }: {
     nixosConfigurations.NixOS = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit chaotic; };
@@ -24,6 +25,8 @@
         ./configuration.nix
         lanzaboote.nixosModules.lanzaboote
         chaotic.nixosModules.default
+        comfyui-nix.nixosModules.default
+        { nixpkgs.overlays = [ comfyui-nix.overlays.default ]; }
 
         home-manager.nixosModules.home-manager
         {
