@@ -43,6 +43,9 @@
     graphics = {
       enable = true;
       enable32Bit = true;
+      extraPackages = with pkgs; [
+      rocmPackages.clr.icd
+      ];
     };
   };
 
@@ -143,7 +146,7 @@
     };
   };
 
-  # Requis pour la planification temps réel de PipeWire
+  # Requis pour la planification en temps réel de PipeWire
   security.rtkit.enable = true;
 
   # ==========================================
@@ -195,7 +198,7 @@
   users.users."chouris" = {
     isNormalUser = true;
     description = "Chouris";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "render" ];
     shell = pkgs.fish;
   };
 
