@@ -17,7 +17,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, lanzaboote, chaotic, comfyui-nix, ... }: {
+  outputs = { self, nixpkgs, home-manager, lanzaboote, chaotic, ... }: {
     nixosConfigurations.NixOS = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit chaotic; };
@@ -25,8 +25,6 @@
         ./configuration.nix
         lanzaboote.nixosModules.lanzaboote
         chaotic.nixosModules.default
-        comfyui-nix.nixosModules.default
-        { nixpkgs.overlays = [ comfyui-nix.overlays.default ]; }
 
         home-manager.nixosModules.home-manager
         {
