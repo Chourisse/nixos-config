@@ -156,7 +156,7 @@
     port = 11434;
     environmentVariables = {
         OLLAMA_KEEP_ALIVE = "0";
-  };
+    };
   };
 
   services.open-webui = {
