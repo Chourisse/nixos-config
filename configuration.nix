@@ -154,6 +154,9 @@
     package = pkgs.ollama-rocm;
     host = "127.0.0.1";
     port = 11434;
+    environmentVariables = {
+        OLLAMA_KEEP_ALIVE = "0";
+  };
   };
 
   services.open-webui = {
