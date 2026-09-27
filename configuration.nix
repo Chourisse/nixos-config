@@ -149,6 +149,55 @@
   # Requis pour la planification en temps réel de PipeWire
   security.rtkit.enable = true;
 
+    services.ollama = {
+    enable = true;
+    package = pkgs.ollama-rocm;
+    host = "127.0.0.1";
+    port = 11434;
+  };
+
+  services.open-webui = {
+    enable = true;
+    host = "127.0.0.1";
+    port = 8080;
+    openFirewall = false;
+    environment = {
+      OLLAMA_BASE_URL = "http://127.0.0.1:11434";
+      WEBUI_AUTH = "True";
+      ENABLE_RAG_WEB_SEARCH = "True";
+      RAG_WEB_SEARCH_ENGINE = "searxng";
+      SEARXNG_QUERY_URL = "http://127.0.0.1:8888/search?q=<query>";
+      RAG_WEB_SEARCH_RESULT_COUNT = "5";
+      RAG_WEB_SEARCH_CONCURRENT_REQUESTS = "10";
+    };
+  };
+
+  services.searx = {
+    enable = true;
+    redisCreateLocally = false;
+    settings = {
+      server = {
+        port = 8888;
+        bind_address = "127.0.0.1";
+        secret_key = "f845ee73a31a09e6ad231722cb80aa20d5cdfaa62b40bc893a4c6f81a562cafa";
+        limiter = false;
+      };
+      search = {
+        formats = [ "html" "json" ];
+      };
+    };
+  };
+
+  services.comfyui = {
+    enable = true;
+    gpuSupport = "rocm";
+    enableManager = true;
+    port = 8188;
+    listenAddress = "127.0.0.1";
+    dataDir = "/var/lib/comfyui";
+    openFirewall = false;
+  };
+
   # ==========================================
   # 5. Programmes & Jeux
   # ==========================================
@@ -177,6 +226,7 @@
     settings = {
       auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];
+      max-jobs = 1;
     };
     gc = {
       automatic = true;

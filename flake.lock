@@ -27,11 +27,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1788968328,
-        "narHash": "sha256-mx9MwY1G1SFTWe1XwHgXTdFKdlmGhYsL8LQcPRMF/QE=",
+        "lastModified": 1790476968,
+        "narHash": "sha256-gcZ2cYwttUwusyV3X6vLprefCYpjqeEeBx5+vcF98CU=",
         "owner": "utensils",
         "repo": "comfyui-nix",
-        "rev": "5e6d5155d302a015645164d195a6ad79f00ed43a",
+        "rev": "fee7b66da9d8c08b05a60bce15bbb3a4c2ebdb0d",
         "type": "github"
       },
       "original": {
@@ -214,11 +214,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1790323409,
-        "narHash": "sha256-VVTPf+Hyd5ebpjBMHmrLMSBIeW6ls48Bqtosj7CNKLA=",
+        "lastModified": 1790463110,
+        "narHash": "sha256-hKlVl12B1dF0Q5vd9dY3lIJM5mFGWYSlXwSLAqHZ1+s=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e94cb152ed51bd6e24eb4a41f1460252beb52cd2",
+        "rev": "e158d9ed9b51c98974c5e66e1ba1c9e0255fecaa",
         "type": "github"
       },
       "original": {
