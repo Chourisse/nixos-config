@@ -166,7 +166,7 @@
       WEBUI_AUTH = "True";
       ENABLE_RAG_WEB_SEARCH = "True";
       RAG_WEB_SEARCH_ENGINE = "searxng";
-      SEARXNG_QUERY_URL = "http://127.0.0.1:8888/search?q=<query>";
+      SEARXNG_QUERY_URL = "http://127.0.0.1:8888/search?q=<query>&format=json";
       RAG_WEB_SEARCH_RESULT_COUNT = "5";
       RAG_WEB_SEARCH_CONCURRENT_REQUESTS = "10";
     };
