@@ -25,6 +25,7 @@
 
       python3
       appimage-run
+      unrar
     ];
   };
 
