@@ -20,17 +20,21 @@
     nixosConfigurations.NixOS = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit chaotic; };
+
       modules = [
         ./configuration.nix
+
         lanzaboote.nixosModules.lanzaboote
         chaotic.nixosModules.default
-
         home-manager.nixosModules.home-manager
+
         {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "hm-backup";
-          home-manager.users.chouris = import ./home.nix;
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            backupFileExtension = "hm-backup";
+            users.chouris = import ./home.nix;
+          };
         }
       ];
     };
