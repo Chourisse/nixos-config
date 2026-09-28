@@ -7,7 +7,7 @@
 
     gamescope = {
       enable = true;
-      package = chaotic.packages.${pkgs.system}.gamescope_git;
+      package = chaotic.packages.${pkgs.stdenv.hostPlatform.system}.gamescope_git;
     };
   };
 }
