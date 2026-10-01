@@ -14,7 +14,6 @@
       (btop.override { rocmSupport = true; })
       topgrade
 
-      goverlay
       mangohud
       protonup-qt
       prismlauncher
