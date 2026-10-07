@@ -13,6 +13,7 @@
       fastfetch
       (btop.override { rocmSupport = true; })
       topgrade
+      obs-studio
 
       mangohud
       protonup-qt
