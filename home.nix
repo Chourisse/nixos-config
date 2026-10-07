@@ -13,7 +13,7 @@
       fastfetch
       (btop.override { rocmSupport = true; })
       topgrade
-      obs-studio
+      obs-studio-plugins.obs-vkcapture
 
       mangohud
       protonup-qt
@@ -31,6 +31,11 @@
 
   programs = {
     home-manager.enable = true;
+
+    obs-studio = {
+      enable = true;
+      plugins = with pkgs.obs-studio-plugins; [ obs-vkcapture ];
+     };
 
     fish = {
       enable = true;
