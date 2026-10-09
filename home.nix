@@ -8,11 +8,12 @@
 
     packages = with pkgs; [
 
-      zed-editor
+      neovim
       kitty
       fastfetch
       (btop.override { rocmSupport = true; })
       topgrade
+      nvd
       obs-studio-plugins.obs-vkcapture
 
       mangohud
