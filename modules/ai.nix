@@ -31,7 +31,7 @@
     searx = {
       enable = true;
       redisCreateLocally = false;
-      environmentFile = "/etc/nixos/secrets/searxng.env";
+      environmentFile = "/var/lib/secrets/searxng.env";
       settings = {
         server = {
           port = 8888;

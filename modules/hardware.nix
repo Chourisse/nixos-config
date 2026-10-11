@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   hardware = {
@@ -17,15 +17,13 @@
 
   zramSwap.enable = true;
 
-  fileSystems =
-    let
-      btrfsOpts = [ "compress=zstd" "noatime" "discard=async" ];
-    in
-    {
-      "/".options = btrfsOpts;
-      "/home".options = [ "subvol=home" ] ++ btrfsOpts;
-      "/nix".options = [ "subvol=nix" ] ++ btrfsOpts;
-    };
+  fileSystems = let
+    btrfsOpts = [ "compress=zstd" "noatime" ];
+  in {
+    "/".options = lib.mkForce btrfsOpts;
+    "/home".options = lib.mkForce ([ "subvol=home" ] ++ btrfsOpts);
+    "/nix".options = lib.mkForce ([ "subvol=nix" ] ++ btrfsOpts);
+  };
 
   services = {
     fstrim.enable = true;
