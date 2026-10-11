@@ -31,11 +31,11 @@
     searx = {
       enable = true;
       redisCreateLocally = false;
+      environmentFile = "/etc/nixos/secrets/searxng.env";
       settings = {
         server = {
           port = 8888;
           bind_address = "127.0.0.1";
-          secret_key = "f845ee73a31a09e6ad231722cb80aa20d5cdfaa62b40bc893a4c6f81a562cafa";
           limiter = false;
         };
         search.formats = [ "html" "json" ];
