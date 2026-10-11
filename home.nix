@@ -14,7 +14,6 @@
       (btop.override { rocmSupport = true; })
       topgrade
       nvd
-      obs-studio-plugins.obs-vkcapture
 
       mangohud
       protonup-qt
