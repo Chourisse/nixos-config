@@ -40,6 +40,5 @@
 
   systemd.tmpfiles.rules = [
     "z /sys/class/hwmon/hwmon*/power*_input 0444 root root -"
-    "z /sys/class/powercap/intel-rapl:*/energy_uj 0444 root root -"
   ];
 }
