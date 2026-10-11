@@ -20,9 +20,9 @@
   fileSystems = let
     btrfsOpts = [ "compress=zstd" "noatime" ];
   in {
-    "/".options = lib.mkForce btrfsOpts;
-    "/home".options = lib.mkForce ([ "subvol=home" ] ++ btrfsOpts);
-    "/nix".options = lib.mkForce ([ "subvol=nix" ] ++ btrfsOpts);
+    "/".options = btrfsOpts;
+    "/home".options = btrfsOpts;
+    "/nix".options = btrfsOpts;
   };
 
   services = {
