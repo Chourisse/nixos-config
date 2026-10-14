@@ -18,7 +18,7 @@
 
   chaotic = {
     nyx.cache.enable = true;
-    mesa-git.enable = false;
+    mesa-git.enable = true;
   };
 
   programs.nix-ld.enable = true;
