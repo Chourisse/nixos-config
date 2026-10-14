@@ -10,7 +10,6 @@
       efi.canTouchEfiVariables = true;
       systemd-boot = {
        enable = lib.mkForce false;
-       configurationLimit = 15;
     };
   };
 
