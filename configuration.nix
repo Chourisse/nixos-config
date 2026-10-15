@@ -15,5 +15,11 @@
     ./modules/users.nix     # Utilisateur et shell
   ];
 
+  sops = {
+  defaultSopsFile = ./secrets/secrets.yaml;
+  age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  secrets."searxng_env" = {};
+ };
+
   system.stateVersion = "26.05";
 }

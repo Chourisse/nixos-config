@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   services = {
@@ -31,7 +31,7 @@
     searx = {
       enable = true;
       redisCreateLocally = false;
-      environmentFile = "/var/lib/secrets/searxng.env";
+      environmentFile = config.sops.secrets."searxng_env".path;
       settings = {
         server = {
           port = 8888;
