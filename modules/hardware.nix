@@ -34,6 +34,21 @@
       enable = true;
       extraArgs = [ "--mode" "gpu" ];
     };
+
+    btrbk.instances."nixos" = {
+      onCalendar = "hourly";
+      settings = {
+        timestamp_format = "long";
+        snapshot_preserve_min = "2d";
+        snapshot_preserve = "48h 7d 4w";
+        volume."/" = {
+          snapshot_dir = ".snapshots";
+          subvolume = {
+            "home" = {};
+          };
+        };
+      };
+    };
   };
 
   systemd.tmpfiles.rules = [
