@@ -1,0 +1,8 @@
+keys:
+  - &chouris age1a09h85de8l3yglf8dk8err3uxysj0ugqr6lgkneuh6wg0muyg54sgsxjfw
+
+creation_rules:
+  - path_regex: secrets/secrets\.yaml$
+    key_groups:
+      - age:
+          - *chouris
