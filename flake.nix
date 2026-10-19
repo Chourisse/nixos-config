@@ -14,14 +14,9 @@
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+   };
 
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
-
-  outputs = { self, nixpkgs, home-manager, lanzaboote, chaotic, sops-nix, ... }: {
+  outputs = { self, nixpkgs, home-manager, lanzaboote, chaotic, ... }: {
     nixosConfigurations.NixOS = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit chaotic; };
@@ -32,7 +27,6 @@
         lanzaboote.nixosModules.lanzaboote
         chaotic.nixosModules.default
         home-manager.nixosModules.home-manager
-	sops-nix.nixosModules.sops
 
         {
           home-manager = {
