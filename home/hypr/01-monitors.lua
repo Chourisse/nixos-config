@@ -12,11 +12,28 @@
 -- La règle de secours tout en bas garantit que tous les écrans s'allument
 -- quoi qu'il arrive.
 --
--- Disposition supposée : secondaire | PRINCIPAL | secondaire.
--- Si gauche/droite sont inversés chez toi, échange les deux blocs 1080p.
+-- Disposition :
+--
+--   ┌──────────────┬────────────────────┐
+--   │ 1080p (haut) │                    │
+--   │   0x0        │  1440p @ 360 Hz    │
+--   ├──────────────┤  HDR — PRINCIPAL   │
+--   │ 1080p (bas)  │   1920x0           │
+--   │   0x1080     ├────────────────────┘
+--   │              │
+--   └──────────────┘
+--
+-- Les bords supérieurs sont alignés (y = 0). Alternatives pour le principal,
+-- selon la hauteur physique de ton installation — change juste son "position" :
+--   "1920x-180" : centre du principal aligné sur le centre de l'écran du haut
+--   "1920x360"  : principal centré par rapport aux deux écrans empilés
+--
+-- ⚠️ Attribution des marques supposée : CHiQ en haut, Iiyama en bas.
+-- Si c'est l'inverse chez toi, échange uniquement les deux valeurs "desc:"
+-- des blocs 1080p ci-dessous (les positions, elles, ne changent pas).
 -- ============================================================================
 
--- ---- Principal (centre) : Gigabyte 27" 2560x1440 @ 360 Hz, OLED, HDR, DP --
+-- ---- Principal : Gigabyte 27" 2560x1440 @ 360 Hz, OLED, HDR, DP ------------
 -- bitdepth = 10 + cm = "auto" (large gamut en 10 bit) : bureau SDR propre,
 -- bascule HDR automatique en plein écran via render.cm_auto_hdr (voir
 -- home/hyprland.nix). À 360 Hz en 10 bit, le lien DP 1.4 utilise le DSC :
@@ -35,21 +52,23 @@ hl.monitor({
     supports_hdr        = 1,
 })
 
--- ---- Secondaire gauche : iiyama 24" 1920x1080 @ 100 Hz (SDR) ---------------
--- Décalé de 180 px vers le bas pour aligner les centres : (1440 - 1080) / 2.
+-- ---- Secondaire haut-gauche : CHiQ 1920x1080 @ 100 Hz (SDR, DP) -------------
 hl.monitor({
-    output   = "desc:Iiyama",
+    output   = "desc:CHiQ",
     mode     = "1920x1080@100",
-    position = "0x180",
+    position = "0x0",
     scale    = 1,
     vrr      = 3, -- mettre 0 si l'écran scintille
 })
 
--- ---- Secondaire droit : CHiQ 1920x1080 @ 100 Hz (SDR) -----------------------
+-- ---- Secondaire bas-gauche : Iiyama 1920x1080 @ 100 Hz (SDR, HDMI) ----------
+-- Juste sous l'écran du haut (y = 1080). Il descendra donc plus bas que le
+-- principal (2160 > 1440) : c'est normal, le coin bas-droite de cet écran
+-- n'a simplement pas de voisin à droite.
 hl.monitor({
-    output   = "desc:CHiQ",
+    output   = "desc:Iiyama",
     mode     = "1920x1080@100",
-    position = "4480x180", -- 1920 (gauche) + 2560 (principal)
+    position = "0x1080",
     scale    = 1,
     vrr      = 3,
 })

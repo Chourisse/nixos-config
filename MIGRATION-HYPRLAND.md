@@ -79,8 +79,10 @@ PipeWire, fish/kitty, btrbk, LACT, Mullvad, lanzaboote…
    l'écran tombera sur la règle de secours (il s'allume, mais sans
    360 Hz/HDR/position) : relève alors le début de sa `description:` dans la
    sortie de `hyprctl` et corrige-le dans `home/hypr/01-monitors.lua`, puis `rs`.
-   Si gauche/droite sont inversés : échange les deux blocs 1080p dans le même
-   fichier.
+   Si les deux écrans 1080p sont inversés (celui du haut affiché en bas) :
+   échange simplement leurs deux valeurs `desc:` dans le même fichier —
+   les positions, elles, sont déjà les bonnes (colonne de gauche : `0x0`
+   en haut, `0x1080` en bas ; principal en `1920x0`).
 3. **Fond d'écran** : dépose des images dans `~/Pictures/Wallpapers`, tape
    brièvement `Super` (launcher), écris `>wallpaper` et choisis. Caelestia en
    déduit tout le schéma de couleurs Material (shell + kitty).
