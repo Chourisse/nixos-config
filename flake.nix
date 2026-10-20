@@ -14,29 +14,47 @@
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-   };
 
-  outputs = { self, nixpkgs, home-manager, lanzaboote, chaotic, ... }: {
-    nixosConfigurations.NixOS = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit chaotic; };
-
-      modules = [
-        ./configuration.nix
-
-        lanzaboote.nixosModules.lanzaboote
-        chaotic.nixosModules.default
-        home-manager.nixosModules.home-manager
-
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            backupFileExtension = "hm-backup";
-            users.chouris = import ./home.nix;
-          };
-        }
-      ];
+    # Shell QuickShell "Caelestia" : uniquement pour son module Home Manager
+    # (programs.caelestia). Les paquets, eux, viennent de nixpkgs
+    # (voir home/caelestia.nix).
+    caelestia-shell = {
+      url = "github:caelestia-dots/shell";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      lanzaboote,
+      chaotic,
+      ...
+    }@inputs:
+    {
+      nixosConfigurations.NixOS = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit chaotic; };
+
+        modules = [
+          ./configuration.nix
+
+          lanzaboote.nixosModules.lanzaboote
+          chaotic.nixosModules.default
+          home-manager.nixosModules.home-manager
+
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              backupFileExtension = "hm-backup";
+              extraSpecialArgs = { inherit inputs; };
+              users.chouris = import ./home.nix;
+            };
+          }
+        ];
+      };
+    };
 }

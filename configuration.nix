@@ -8,7 +8,7 @@
     ./modules/hardware.nix  # GPU, BTRFS
     ./modules/network.nix   # Réseau, DNS, VPN
     ./modules/locale.nix    # Heure, langue, polices
-    ./modules/desktop.nix   # Plasma, SDDM, audio
+    ./modules/desktop.nix   # Hyprland, greetd/ReGreet, audio
     ./modules/gaming.nix    # Steam, Gamemode, Gamescope
     ./modules/nix.nix       # Réglages Nix, Chaotic-Nyx, paquets système
     ./modules/users.nix     # Utilisateur et shell

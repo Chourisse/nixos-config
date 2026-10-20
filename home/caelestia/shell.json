@@ -1,0 +1,36 @@
+{
+    "general": {
+        "apps": {
+            "terminal": ["kitty"],
+            "audio": ["pwvucontrol"],
+            "playback": ["mpv"],
+            "explorer": ["thunar"]
+        },
+        "idle": {
+            "lockBeforeSleep": true,
+            "inhibitWhenAudio": true,
+            "inhibitWhenCharging": false,
+            "timeouts": [
+                {
+                    "timeout": 600,
+                    "idleAction": "lock",
+                    "inhibitWhenAudio": false,
+                    "inhibitWhenCharging": false,
+                    "respectInhibitors": true
+                },
+                {
+                    "timeout": 900,
+                    "idleAction": "dpms off",
+                    "returnAction": "dpms on"
+                }
+            ]
+        }
+    },
+    "lock": {
+        "enableFprint": false,
+        "enableHowdy": false
+    },
+    "paths": {
+        "wallpaperDir": "~/Pictures/Wallpapers"
+    }
+}
