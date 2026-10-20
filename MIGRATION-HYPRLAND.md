@@ -29,13 +29,19 @@ PipeWire, fish/kitty, btrbk, LACT, Mullvad, lanzaboote…
    dans KWallet ne suivent pas dans GNOME Keyring. Si des applications y ont des
    secrets importants, exporte-les depuis KWalletManager. Sinon, les applis
    redemanderont leurs identifiants une première fois.
-2. Récupère la branche dans `/etc/nixos` :
+2. Récupère la branche dans `/etc/nixos`. Elle est distribuée sous forme de
+   bundle git (`hyprland-caelestia.bundle`) :
 
    ```bash
    cd /etc/nixos
-   git fetch origin
+   git fetch ~/Téléchargements/hyprland-caelestia.bundle hyprland-caelestia:hyprland-caelestia
    git checkout hyprland-caelestia
+   git push -u origin hyprland-caelestia   # optionnel : publier la branche
    ```
+
+   (Plan B si le bundle coincerait : crée la branche
+   `git checkout -b hyprland-caelestia`, extrais
+   `nixos-hyprland-caelestia.tar.gz` par-dessus, `git add -A`.)
 
 3. Le `flake.lock` de la branche est déjà à jour et inclut le nouvel input
    `caelestia-shell` (la config Lua requiert Hyprland ≥ 0.55 et un Home Manager

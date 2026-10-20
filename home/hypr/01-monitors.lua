@@ -15,10 +15,10 @@
 -- Disposition :
 --
 --   ┌──────────────┬────────────────────┐
---   │ 1080p (haut) │                    │
+--   │ Iiyama 1080p │                    │
 --   │   0x0        │  1440p @ 360 Hz    │
 --   ├──────────────┤  HDR — PRINCIPAL   │
---   │ 1080p (bas)  │   1920x0           │
+--   │ CHiQ 1080p   │   1920x0           │
 --   │   0x1080     ├────────────────────┘
 --   │              │
 --   └──────────────┘
@@ -27,10 +27,6 @@
 -- selon la hauteur physique de ton installation — change juste son "position" :
 --   "1920x-180" : centre du principal aligné sur le centre de l'écran du haut
 --   "1920x360"  : principal centré par rapport aux deux écrans empilés
---
--- ⚠️ Attribution des marques supposée : CHiQ en haut, Iiyama en bas.
--- Si c'est l'inverse chez toi, échange uniquement les deux valeurs "desc:"
--- des blocs 1080p ci-dessous (les positions, elles, ne changent pas).
 -- ============================================================================
 
 -- ---- Principal : Gigabyte 27" 2560x1440 @ 360 Hz, OLED, HDR, DP ------------
@@ -52,21 +48,21 @@ hl.monitor({
     supports_hdr        = 1,
 })
 
--- ---- Secondaire haut-gauche : CHiQ 1920x1080 @ 100 Hz (SDR, DP) -------------
+-- ---- Secondaire haut-gauche : Iiyama 1920x1080 @ 100 Hz (SDR, HDMI) --------
 hl.monitor({
-    output   = "desc:CHiQ",
+    output   = "desc:Iiyama",
     mode     = "1920x1080@100",
     position = "0x0",
     scale    = 1,
     vrr      = 3, -- mettre 0 si l'écran scintille
 })
 
--- ---- Secondaire bas-gauche : Iiyama 1920x1080 @ 100 Hz (SDR, HDMI) ----------
+-- ---- Secondaire bas-gauche : CHiQ 1920x1080 @ 100 Hz (SDR, DP) --------------
 -- Juste sous l'écran du haut (y = 1080). Il descendra donc plus bas que le
 -- principal (2160 > 1440) : c'est normal, le coin bas-droite de cet écran
 -- n'a simplement pas de voisin à droite.
 hl.monitor({
-    output   = "desc:Iiyama",
+    output   = "desc:CHiQ",
     mode     = "1920x1080@100",
     position = "0x1080",
     scale    = 1,
