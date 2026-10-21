@@ -21,9 +21,9 @@
 -- ---- Principal : Gigabyte 27" 2560x1440 @ 360 Hz, OLED, HDR, DP-2 ----------
 -- Mode "KDE" : HDR permanent (cm hdredid) + curseurs SDR comme sur Plasma.
 -- Plus de bascule auto : les jeux voient un écran HDR en permanence.
--- Réglages validés ("essai 2") : sdrbrightness 1.7 (boost du SDR),
--- sdrsaturation 1.0, sdr_eotf gamma22force. Ajustables librement.
--- DP 1.4 en 10-bit/360 Hz via DSC (AMD).
+-- Réglages validés ("essai 2" + retours) : sdrbrightness 2.0 (boost du SDR),
+-- sdrsaturation 0.85 (un ton sous la normale), sdr_eotf gamma22force.
+-- Ajustables librement. DP 1.4 en 10-bit/360 Hz via DSC (AMD).
 -- vrr=3 : VRR seulement en plein écran jeu/vidéo (évite le scintillement OLED).
 hl.monitor({
     output              = "desc:GIGA-BYTE TECHNOLOGY CO. LTD.",
@@ -32,8 +32,8 @@ hl.monitor({
     scale               = 1,
     bitdepth            = 10,
     cm                  = "hdredid",
-    sdrbrightness       = 1.7,
-    sdrsaturation       = 1.0,
+    sdrbrightness       = 2.0,
+    sdrsaturation       = 0.85,
     sdr_eotf            = "gamma22force",
     vrr                 = 3,
     supports_wide_color = 1,
