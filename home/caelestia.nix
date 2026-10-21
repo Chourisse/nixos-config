@@ -11,6 +11,11 @@
   programs.caelestia = {
     enable = true;
 
+    package = inputs.caelestia-shell.packages.${pkgs.system}.default.override {
+      withCli = true;
+      caelestia-cli = pkgs.caelestia-cli;
+    };
+    cli.package = pkgs.caelestia-cli;
     cli.enable = true;
 
     systemd.enable = true;
