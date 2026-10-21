@@ -11,6 +11,11 @@
     homeDirectory = "/home/chouris";
     stateVersion = "26.05";
 
+    # Terminal par défaut (Thunar, xdg-open, les raccourcis "Terminal=true")
+    sessionVariables = {
+      TERMINAL = "kitty";
+    };
+
     packages = with pkgs; [
 
       # --- Applications déjà présentes (inchangées) ---
@@ -101,12 +106,46 @@
 
   dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
 
+  # Neovim : le paquet nix fournit nvim.desktop avec "Terminal=true", mais
+  # Thunar ne trouve aucun terminal sous Hyprland pur ("Unable to find terminal
+  # required for application"). On force l'ouverture dans kitty.
+  xdg.desktopEntries.nvim = {
+    name = "Neovim";
+    genericName = "Text Editor";
+    comment = "Éditeur de texte dans le terminal kitty";
+    exec = "kitty -e nvim %F";
+    terminal = false;
+    icon = "nvim";
+    categories = [ "Utility" "TextEditor" ];
+    mimeType = [
+      "text/plain"
+      "text/x-nix"
+      "text/x-lua"
+      "text/markdown"
+      "text/x-python"
+      "application/json"
+      "application/x-shellscript"
+    ];
+  };
+
+  # Terminal par défaut pour les outils Xfce (exo) utilisés par Thunar
+  xdg.configFile."xfce4/helpers.rc".text = "TerminalEmulator=kitty\n";
+
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
       "text/html" = "librewolf.desktop";
       "x-scheme-handler/http" = "librewolf.desktop";
       "x-scheme-handler/https" = "librewolf.desktop";
+
+      # Double-clic sur un fichier texte → kitty + nvim
+      "text/plain" = "nvim.desktop";
+      "text/x-nix" = "nvim.desktop";
+      "text/x-lua" = "nvim.desktop";
+      "text/markdown" = "nvim.desktop";
+      "text/x-python" = "nvim.desktop";
+      "application/json" = "nvim.desktop";
+      "application/x-shellscript" = "nvim.desktop";
     };
   };
 
