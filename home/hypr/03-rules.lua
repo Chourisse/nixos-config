@@ -25,9 +25,6 @@ local float_70_80_tag = "float_70_80"
 local game_tag = "game"
 local xwl_popup_tag = "xwl_popup"
 local system_monitor_tag = "system_monitor"
-local music_player_tag = "music_player"
-local communication_app_tag = "communication_app"
-local todo_app_tag = "todo_app"
 
 
 hl.window_rule({ match = { fullscreen = false }, opacity = "1 override" })
@@ -100,18 +97,6 @@ tagged_rule(xwl_popup_tag, {
 
 
 tagged_rule(system_monitor_tag, { "btop" }, "class")
-tagged_rule(music_player_tag, {
-    "feishin|Supersonic|Plexamp",
-    "Spotify",
-    "Cider",
-    "com.github.th-ch.youtube-music|com-maxrave-simpmusic-MainKt",
-}, "class")
-tagged_rule(music_player_tag, { "Spotify|Spotify Free" }, "initial_title")
-tagged_rule(communication_app_tag, {
-    "discord|equibop|vesktop",
-    "whatsapp",
-}, "class")
-tagged_rule(todo_app_tag, { "todoist" }, "class")
 
 
 tagged_rule(float_tag, { { class = "steam", title = "Friends List" } })
@@ -132,9 +117,6 @@ create_tag(xwl_popup_tag, {
     rounding  = 10,
 })
 create_tag(system_monitor_tag, { workspace = "special:sysmon" })
-create_tag(music_player_tag, { workspace = "special:music" })
-create_tag(communication_app_tag, { workspace = "special:communication" })
-create_tag(todo_app_tag, { workspace = "special:todo" })
 
 
 hl.workspace_rule({ workspace = "w[tv1]s[false]", gaps_out = 20 })

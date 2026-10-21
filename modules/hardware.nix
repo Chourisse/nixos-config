@@ -44,6 +44,7 @@
         volume."/" = {
           snapshot_dir = ".snapshots";
           subvolume = {
+            "." = { snapshot_name = "root"; };
             "home" = {};
           };
         };
