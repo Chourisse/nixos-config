@@ -25,7 +25,6 @@
       inter
       nerd-fonts.jetbrains-mono
       nerd-fonts.fira-code
-      # Polices utilisées par Caelestia (barre, icônes Material) et ReGreet
       rubik
       material-symbols
       nerd-fonts.caskaydia-cove

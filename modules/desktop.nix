@@ -4,30 +4,19 @@ let
   tomlFormat = pkgs.formats.toml { };
 in
 {
-  # ---------------------------------------------------------------------------
-  # Compositeur : Hyprland, session gérée par UWSM (recommandé par le wiki NixOS)
-  # ---------------------------------------------------------------------------
   programs.hyprland = {
     enable = true;
-    withUWSM = true; # crée la session "Hyprland (uwsm-managed)" dans le greeter
-    xwayland.enable = true; # Steam et les applications X11
+    withUWSM = true; 
+    xwayland.enable = true; 
   };
 
-  # Portail GTK en plus de celui de Hyprland (sélecteur de fichiers, etc.)
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
-  # Force les applications Electron/Chromium en Wayland natif
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  # ---------------------------------------------------------------------------
-  # Login : greetd + ReGreet (GTK4), stylé aux couleurs de Caelestia
-  # Caelestia n'a pas de greeter officiel : c'est l'équivalent déclaratif.
-  # ReGreet tourne dans le compositeur minimal "cage".
-  # ---------------------------------------------------------------------------
-  # SDDM (ancien écran de login Plasma) doit être coupé explicitement
   services.displayManager.sddm.enable = lib.mkForce false;
   services.displayManager.autoLogin.enable = lib.mkForce false;
 
@@ -42,13 +31,11 @@ in
     };
   };
 
-  # Le greeter a besoin d'accéder à la carte graphique (sinon écran noir)
   users.users.greeter.extraGroups = [
     "video"
     "render"
   ];
 
-  # ReGreet liste les utilisateurs via AccountsService (activé par Plasma avant, plus maintenant)
   services.accounts-daemon.enable = true;
 
   environment.etc = {
@@ -73,7 +60,6 @@ in
       appearance.greeting_msg = "Bienvenue";
     };
 
-    # Fond "#101418" (surface sombre de Caelestia) + coins arrondis Material
     "greetd/regreet.css".text = ''
       window {
         background-color: #101418;
@@ -85,7 +71,6 @@ in
     '';
   };
 
-  # Thèmes devant être visibles par la session du greeter (utilisateur "greeter")
   environment.systemPackages = with pkgs; [
     regreet
     adw-gtk3
@@ -99,28 +84,18 @@ in
     "d /var/cache/regreet 0755 greeter greeter -"
   ];
 
-  # ---------------------------------------------------------------------------
-  # Trousseau de clés (remplace KWallet), déverrouillé automatiquement au login
-  # ---------------------------------------------------------------------------
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.greetd.enableGnomeKeyring = true;
 
-  # ---------------------------------------------------------------------------
-  # Services que Plasma fournissait : fichiers, vignettes, montages, profils
-  # ---------------------------------------------------------------------------
   services = {
-    gvfs.enable = true; # corbeille, MTP et réseau dans Thunar
-    tumbler.enable = true; # vignettes dans Thunar
-    udisks2.enable = true; # montage des périphériques
-    power-profiles-daemon.enable = true; # profils de performance dans Caelestia
+    gvfs.enable = true; 
+    tumbler.enable = true; 
+    udisks2.enable = true; 
+    power-profiles-daemon.enable = true;
   };
 
-  # DDC/CI : permet à Caelestia (via ddcutil) de régler la luminosité des écrans
   hardware.i2c.enable = true;
 
-  # ---------------------------------------------------------------------------
-  # Audio (inchangé par rapport à l'ancienne configuration Plasma)
-  # ---------------------------------------------------------------------------
   services.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
@@ -130,6 +105,5 @@ in
     wireplumber.enable = true;
   };
 
-  # Requis pour PipeWire
   security.rtkit.enable = true;
 }

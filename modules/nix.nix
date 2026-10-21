@@ -25,7 +25,7 @@
 
   environment.systemPackages = with pkgs; [
     git
-    gparted # remplace kdePackages.partitionmanager (KDE supprimé)
+    gparted
     sbctl
   ];
 }

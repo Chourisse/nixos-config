@@ -2,8 +2,8 @@
 
 {
   imports = [
-    ./home/hyprland.nix # Hyprland (config Lua via Home Manager)
-    ./home/caelestia.nix # Shell QuickShell "Caelestia"
+    ./home/hyprland.nix 
+    ./home/caelestia.nix 
   ];
 
   home = {
@@ -11,14 +11,12 @@
     homeDirectory = "/home/chouris";
     stateVersion = "26.05";
 
-    # Terminal par défaut (xdg-open, les raccourcis "Terminal=true")
     sessionVariables = {
       TERMINAL = "kitty";
     };
 
     packages = with pkgs; [
 
-      # --- Applications déjà présentes (inchangées) ---
       neovim
       kitty
       fastfetch
@@ -38,33 +36,31 @@
       appimage-run
       unrar
 
-      # --- Bureau Hyprland/Caelestia ---
-      kdePackages.dolphin # gestionnaire de fichiers (préféré à Thunar)
-      kdePackages.ark # archives (menu contextuel de Dolphin)
-      kdePackages.kdegraphics-thumbnailers # vignettes images/PDF dans Dolphin
-      kdePackages.ffmpegthumbs # vignettes vidéos dans Dolphin
-      kdePackages.kio-extras # protocoles et vignettes complémentaires
-      imv # visionneuse d'images (remplace Gwenview)
-      mpv # vidéo, avec bascule HDR auto en plein écran (voir plus bas)
-      pwvucontrol # contrôle audio PipeWire
-      seahorse # interface du trousseau GNOME Keyring (remplace KWalletManager)
+      kdePackages.dolphin 
+      kdePackages.ark 
+      kdePackages.kdegraphics-thumbnailers 
+      kdePackages.ffmpegthumbs 
+      kdePackages.kio-extras 
+      imv 
+      mpv 
+      pwvucontrol 
+      seahorse
 
-      # --- Outils Wayland utilisés par Caelestia (CLI, binds, sélecteurs) ---
       grim
       slurp
-      swappy # captures d'écran
-      gpu-screen-recorder # `caelestia record`
-      fuzzel # sélecteurs presse-papiers / emoji de la CLI Caelestia
+      swappy 
+      gpu-screen-recorder 
+      fuzzel 
       cliphist
-      wl-clipboard # historique du presse-papiers
-      hyprpicker # pipette à couleurs
-      libnotify # notify-send
+      wl-clipboard 
+      hyprpicker
+      libnotify 
       playerctl
-      wireplumber # wpctl (binds volume)
-      trash-cli # corbeille + purge automatique au login
+      wireplumber 
+      trash-cli 
       brightnessctl
-      ddcutil # luminosité des écrans externes
-      bluez # fournit mpris-proxy (commandes média Bluetooth, voir autostart)
+      ddcutil 
+      bluez 
     ];
 
     pointerCursor = {
@@ -76,14 +72,10 @@
     };
   };
 
-  # Historique du presse-papiers (watchers wl-paste en services systemd)
   services.cliphist.enable = true;
 
-  # Agent polkit : demandes d'authentification graphiques (gparted, etc.)
   services.hyprpolkitagent.enable = true;
 
-  # Thème sombre cohérent pour les applications GTK/Qt au premier boot.
-  # Caelestia recolorera ensuite depuis le fond d'écran (via sa CLI).
   gtk = {
     enable = true;
     theme = {
@@ -107,9 +99,6 @@
 
   dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
 
-  # Neovim : le paquet nix fournit nvim.desktop avec "Terminal=true", mais
-  # aucun terminal n'est détecté sous Hyprland pur ("Unable to find terminal
-  # required for application"). On force l'ouverture dans kitty.
   xdg.desktopEntries.nvim = {
     name = "Neovim";
     genericName = "Text Editor";
@@ -136,7 +125,6 @@
       "x-scheme-handler/http" = "librewolf.desktop";
       "x-scheme-handler/https" = "librewolf.desktop";
 
-      # Dossiers → Dolphin, archives → Ark
       "inode/directory" = "org.kde.dolphin.desktop";
       "application/zip" = "org.kde.ark.desktop";
       "application/x-tar" = "org.kde.ark.desktop";
@@ -144,7 +132,6 @@
       "application/x-7z-compressed" = "org.kde.ark.desktop";
       "application/vnd.rar" = "org.kde.ark.desktop";
 
-      # Double-clic sur un fichier texte → kitty + nvim
       "text/plain" = "nvim.desktop";
       "text/x-nix" = "nvim.desktop";
       "text/x-lua" = "nvim.desktop";
@@ -155,17 +142,12 @@
     };
   };
 
-  # mpv : confier la gestion des couleurs à Hyprland pour que la bascule
-  # HDR automatique (render.cm_auto_hdr) se déclenche en plein écran.
   xdg.configFile."mpv/mpv.conf".text = ''
     vo=gpu-next
     target-colorspace-hint=yes
     target-colorspace-hint-mode=source
   '';
 
-  # kitty : configuration "seedée" une seule fois. Le fichier reste ensuite
-  # modifiable à la main, et la CLI Caelestia peut écrire theme.conf à côté
-  # pour suivre les couleurs du fond d'écran.
   home.activation.seedKittyConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     $DRY_RUN_CMD mkdir -p "$HOME/.config/kitty"
     if [ ! -e "$HOME/.config/kitty/kitty.conf" ]; then

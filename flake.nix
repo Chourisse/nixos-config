@@ -15,9 +15,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Shell QuickShell "Caelestia" : uniquement pour son module Home Manager
-    # (programs.caelestia). Les paquets, eux, viennent de nixpkgs
-    # (voir home/caelestia.nix).
     caelestia-shell = {
       url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";

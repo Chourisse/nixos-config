@@ -11,7 +11,7 @@
       "wheel"
       "video"
       "render"
-      "i2c" # ddcutil : luminosité des écrans via DDC/CI (Caelestia)
+      "i2c"
     ];
     shell = pkgs.fish;
   };
