@@ -88,13 +88,10 @@
 
       render = {
         cm_enabled = true;
-        cm_auto_hdr = 2;
-        cm_fs_passthrough = 0;
+        cm_auto_hdr = 1;
         direct_scanout = 0;
         send_content_type = true;
       };
-
-      experimental.xx_color_management_v4 = true;
 
       quirks.prefer_hdr = 2;
 

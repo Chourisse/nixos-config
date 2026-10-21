@@ -19,7 +19,7 @@
 -- ============================================================================
 
 -- ---- Principal : Gigabyte 27" 2560x1440 @ 360 Hz, OLED, HDR, DP-2 ----------
--- bitdepth 10 + cm "edid" : bureau SDR propre, HDR auto en plein écran via
+-- bitdepth 10 + cm "srgb" : bureau SDR propre, HDR auto en plein écran via
 -- render.cm_auto_hdr. DP 1.4 en 10-bit/360 Hz passe par DSC (OK sur AMD).
 -- vrr=3 : VRR seulement en plein écran jeu/vidéo (évite le scintillement OLED).
 hl.monitor({
@@ -28,7 +28,7 @@ hl.monitor({
     position            = "1920x0",
     scale               = 1,
     bitdepth            = 10,
-    cm                  = "edid",
+    cm                  = "srgb",
     vrr                 = 3,
     supports_wide_color = 1,
     supports_hdr        = 1,
