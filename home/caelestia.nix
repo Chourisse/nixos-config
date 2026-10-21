@@ -5,6 +5,19 @@
   ...
 }:
 
+let
+  # La CLI appelle ffmpeg/ffprobe (1ère image des wallpapers animés/vidéos,
+  # vignettes, extraction des couleurs) — absents du paquet nixpkgs.
+  caelestiaCli = pkgs.symlinkJoin {
+    name = "caelestia-cli-with-ffmpeg";
+    paths = [ pkgs.caelestia-cli ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/caelestia \
+        --prefix PATH : ${lib.makeBinPath [ pkgs.ffmpeg ]}
+    '';
+  };
+in
 {
   imports = [ inputs.caelestia-shell.homeManagerModules.default ];
 
@@ -13,9 +26,10 @@
 
     package = inputs.caelestia-shell.packages.${pkgs.system}.default.override {
       withCli = true;
-      caelestia-cli = pkgs.caelestia-cli;
+      caelestia-cli = caelestiaCli;
+      extraRuntimeDeps = [ pkgs.ffmpeg ];
     };
-    cli.package = pkgs.caelestia-cli;
+    cli.package = caelestiaCli;
     cli.enable = true;
 
     systemd.enable = true;
