@@ -100,6 +100,11 @@ tagged_rule(game_tag, {
     "Minecraft.*",       -- Minecraft (PrismLauncher)
 }, "class")
 
+-- Lunar Client / Minecraft Java : forcer le vrai plein écran
+-- (sinon la fenêtre reste fenêtrée et le menu Caelestia reste visible à gauche)
+hl.window_rule({ match = { class = "^(java|Minecraft.*)$" }, fullscreen = true })
+hl.window_rule({ match = { title = "^(Minecraft.*|Lunar Client \\(.*)$" }, fullscreen = true })
+
 -- Popups XWayland parasites (fenêtres invisibles de Steam, etc.)
 tagged_rule(xwl_popup_tag, {
     { xwayland = true, title = "win[0-9]+" },
