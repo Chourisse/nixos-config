@@ -98,12 +98,13 @@ tagged_rule(game_tag, {
     "steam_app_default", -- jeux Lutris
     "gamescope",         -- gamescope (HDR)
     "Minecraft.*",       -- Minecraft (PrismLauncher)
+    "Lunar Client [0-9].*", -- Lunar Client (jeu, ex: "Lunar Client 1.8.9 (v2.23.5-2643)")
 }, "class")
 
 -- Lunar Client / Minecraft Java : forcer le vrai plein écran
 -- (sinon la fenêtre reste fenêtrée et le menu Caelestia reste visible à gauche)
-hl.window_rule({ match = { class = "^(java|Minecraft.*)$" }, fullscreen = true })
-hl.window_rule({ match = { title = "^(Minecraft.*|Lunar Client \\(.*)$" }, fullscreen = true })
+hl.window_rule({ match = { class = "^(java|Minecraft.*|Lunar Client [0-9].*)$" }, fullscreen = true })
+hl.window_rule({ match = { title = "^(Minecraft.*|Lunar Client [0-9].*)$" }, fullscreen = true })
 
 -- Popups XWayland parasites (fenêtres invisibles de Steam, etc.)
 tagged_rule(xwl_popup_tag, {
