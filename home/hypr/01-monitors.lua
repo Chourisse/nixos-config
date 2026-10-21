@@ -19,8 +19,9 @@
 -- ============================================================================
 
 -- ---- Principal : Gigabyte 27" 2560x1440 @ 360 Hz, OLED, HDR, DP-2 ----------
--- bitdepth 10 + cm "srgb" : bureau SDR propre, HDR auto en plein écran via
--- render.cm_auto_hdr. DP 1.4 en 10-bit/360 Hz passe par DSC (OK sur AMD).
+-- Mode "KDE" : HDR permanent (cm hdredid) + curseurs SDR comme sur Plasma.
+-- Plus de bascule auto : les jeux voient un écran HDR en permanence.
+-- sdrsaturation 0.6 = réglage KDE à 60%. DP 1.4 en 10-bit/360 Hz via DSC (AMD).
 -- vrr=3 : VRR seulement en plein écran jeu/vidéo (évite le scintillement OLED).
 hl.monitor({
     output              = "desc:GIGA-BYTE TECHNOLOGY CO. LTD.",
@@ -28,7 +29,9 @@ hl.monitor({
     position            = "1920x0",
     scale               = 1,
     bitdepth            = 10,
-    cm                  = "srgb",
+    cm                  = "hdredid",
+    sdrbrightness       = 1.0,
+    sdrsaturation       = 0.6,
     vrr                 = 3,
     supports_wide_color = 1,
     supports_hdr        = 1,
@@ -36,20 +39,22 @@ hl.monitor({
 
 -- ---- Secondaire haut-gauche : Iiyama PL2245H 1080p@100 — DP-3 --------------
 hl.monitor({
-    output   = "desc:iiyama Corporation",
-    mode     = "1920x1080@100",
-    position = "0x0",
-    scale    = 1,
-    vrr      = 3,
+    output         = "desc:iiyama Corporation",
+    mode           = "1920x1080@100",
+    position       = "0x0",
+    scale          = 1,
+    sdrsaturation  = 0.6,
+    vrr            = 3,
 })
 
 -- ---- Secondaire bas-gauche : ChangHong/CHiQ MNT 1080p@100 — HDMI-A-1 -------
 hl.monitor({
-    output   = "desc:ChangHong Electric",
-    mode     = "1920x1080@100",
-    position = "0x1080",
-    scale    = 1,
-    vrr      = 3,
+    output         = "desc:ChangHong Electric",
+    mode           = "1920x1080@100",
+    position       = "0x1080",
+    scale          = 1,
+    sdrsaturation  = 0.6,
+    vrr            = 3,
 })
 
 -- ---- Secours : tout écran non identifié -----------------------------------

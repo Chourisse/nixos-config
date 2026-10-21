@@ -88,7 +88,7 @@
 
       render = {
         cm_enabled = true;
-        cm_auto_hdr = 1;
+        cm_auto_hdr = 0;
         direct_scanout = 0;
         send_content_type = true;
       };
