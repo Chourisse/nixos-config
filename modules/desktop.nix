@@ -48,6 +48,9 @@ in
     "render"
   ];
 
+  # ReGreet liste les utilisateurs via AccountsService (activé par Plasma avant, plus maintenant)
+  services.accounts-daemon.enable = true;
+
   environment.etc = {
     "greetd/regreet.toml".source = tomlFormat.generate "regreet.toml" {
       GTK = {
