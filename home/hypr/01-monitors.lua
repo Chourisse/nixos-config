@@ -32,7 +32,7 @@ hl.monitor({
     scale               = 1,
     bitdepth            = 10,
     cm                  = "hdredid",
-    sdrbrightness       = 1.7,
+    sdrbrightness       = 1.3,
     sdrsaturation       = 0.9,
     sdr_eotf            = "gamma22force",
     sdr_min_luminance   = 0.005,
