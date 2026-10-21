@@ -35,9 +35,6 @@ hl.window_rule({ match = { fullscreen = false }, opacity = "1 override" })
 
 hl.window_rule({ match = { float = true, xwayland = false }, center = true })
 
-hl.window_rule({ match = { class = "^kitty$" }, float = true })
-
-
 hl.window_rule({
     match             = { title = "Picture(-| )in(-| )[Pp]icture" },
     move              = "(monitor_w*0.98-window_w) (monitor_h*0.97-window_h)",
