@@ -11,8 +11,6 @@
   programs.caelestia = {
     enable = true;
 
-    package = pkgs.caelestia-shell;
-    cli.package = pkgs.caelestia-cli;
     cli.enable = true;
 
     systemd.enable = true;
