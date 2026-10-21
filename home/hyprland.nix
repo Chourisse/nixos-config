@@ -87,13 +87,9 @@
       };
 
       render = {
-        cm_enabled = true;
-        cm_auto_hdr = 0;
+        cm_enabled = false;
         direct_scanout = 0;
-        send_content_type = true;
       };
-
-      quirks.prefer_hdr = 2;
 
       xwayland.force_zero_scaling = true;
     };
