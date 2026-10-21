@@ -1,6 +1,3 @@
--- Courbes et animations Material (repris des dotfiles caelestia-dots/caelestia,
--- fichier hypr/hyprland/animations.lua)
-
 hl.curve("specialWorkSwitch", { type = "bezier", points = { { 0.05, 0.7 }, { 0.1, 1 } } })
 hl.curve("emphasizedAccel", { type = "bezier", points = { { 0.3, 0 }, { 0.8, 0.15 } } })
 hl.curve("emphasizedDecel", { type = "bezier", points = { { 0.05, 0.7 }, { 0.1, 1 } } })

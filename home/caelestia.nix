@@ -6,8 +6,8 @@
 }:
 
 let
-  # La CLI appelle ffmpeg/ffprobe (1ère image des wallpapers animés/vidéos,
-  # vignettes, extraction des couleurs) — absents du paquet nixpkgs.
+
+
   caelestiaCli = pkgs.symlinkJoin {
     name = "caelestia-cli-with-ffmpeg";
     paths = [ pkgs.caelestia-cli ];

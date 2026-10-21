@@ -2,8 +2,8 @@
 
 {
   imports = [
-    ./home/hyprland.nix 
-    ./home/caelestia.nix 
+    ./home/hyprland.nix
+    ./home/caelestia.nix
   ];
 
   home = {
@@ -36,31 +36,31 @@
       appimage-run
       unrar
 
-      kdePackages.dolphin 
-      kdePackages.ark 
-      kdePackages.kdegraphics-thumbnailers 
-      kdePackages.ffmpegthumbs 
-      kdePackages.kio-extras 
-      imv 
-      mpv 
-      pwvucontrol 
+      kdePackages.dolphin
+      kdePackages.ark
+      kdePackages.kdegraphics-thumbnailers
+      kdePackages.ffmpegthumbs
+      kdePackages.kio-extras
+      imv
+      mpv
+      pwvucontrol
       seahorse
 
       grim
       slurp
-      swappy 
-      gpu-screen-recorder 
-      fuzzel 
+      swappy
+      gpu-screen-recorder
+      fuzzel
       cliphist
-      wl-clipboard 
+      wl-clipboard
       hyprpicker
-      libnotify 
+      libnotify
       playerctl
-      wireplumber 
-      trash-cli 
+      wireplumber
+      trash-cli
       brightnessctl
-      ddcutil 
-      bluez 
+      ddcutil
+      bluez
     ];
 
     pointerCursor = {
@@ -144,8 +144,6 @@
 
   xdg.configFile."mpv/mpv.conf".text = ''
     vo=gpu-next
-    target-colorspace-hint=yes
-    target-colorspace-hint-mode=source
   '';
 
   home.activation.seedKittyConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
@@ -167,7 +165,7 @@
     fish = {
       enable = true;
       shellAliases = {
-        sc = "cd /etc/nixos && git add . && git commit -m \"Update\" && git push";
+        sc = "cd /etc/nixos && git add -A; and git diff --cached --quiet; or git commit -m \"Update\"; and git pull --rebase origin main; and git push";
         ff = "fastfetch";
         rs = "sudo nixos-rebuild switch --flake /etc/nixos#NixOS";
         tg = "topgrade -y";

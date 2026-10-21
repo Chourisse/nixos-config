@@ -6,8 +6,8 @@ in
 {
   programs.hyprland = {
     enable = true;
-    withUWSM = true; 
-    xwayland.enable = true; 
+    withUWSM = true;
+    xwayland.enable = true;
   };
 
   xdg.portal = {
@@ -88,9 +88,9 @@ in
   security.pam.services.greetd.enableGnomeKeyring = true;
 
   services = {
-    gvfs.enable = true; 
-    tumbler.enable = true; 
-    udisks2.enable = true; 
+    gvfs.enable = true;
+    tumbler.enable = true;
+    udisks2.enable = true;
     power-profiles-daemon.enable = true;
   };
 
