@@ -27,13 +27,26 @@ in
   # Caelestia n'a pas de greeter officiel : c'est l'équivalent déclaratif.
   # ReGreet tourne dans le compositeur minimal "cage".
   # ---------------------------------------------------------------------------
+  # SDDM (ancien écran de login Plasma) doit être coupé explicitement
+  services.displayManager.sddm.enable = lib.mkForce false;
+  services.displayManager.autoLogin.enable = lib.mkForce false;
+
   services.greetd = {
     enable = true;
-    settings.default_session = {
-      command = "${pkgs.dbus}/bin/dbus-run-session ${lib.getExe pkgs.cage} -s -- ${lib.getExe pkgs.regreet}";
-      user = "greeter";
+    settings = {
+      default_session = {
+        command = "${pkgs.dbus}/bin/dbus-run-session ${lib.getExe pkgs.cage} -s -- ${lib.getExe pkgs.regreet}";
+        user = "greeter";
+      };
+      terminal.vt = 1;
     };
   };
+
+  # Le greeter a besoin d'accéder à la carte graphique (sinon écran noir)
+  users.users.greeter.extraGroups = [
+    "video"
+    "render"
+  ];
 
   environment.etc = {
     "greetd/regreet.toml".source = tomlFormat.generate "regreet.toml" {
