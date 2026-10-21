@@ -70,7 +70,7 @@ tagged_rule(opaque_tag, {
 -- Flottantes
 tagged_rule(float_tag, {
     "yad|zenity",                       -- dialogues
-    "org.gnome.FileRoller|file-roller", -- archives
+    "org.kde.ark|ark",                    -- archives
     "org.gnome.seahorse.Application",   -- trousseau
 }, "class")
 tagged_rule(float_tag, {

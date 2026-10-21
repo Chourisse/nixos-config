@@ -11,7 +11,7 @@
     homeDirectory = "/home/chouris";
     stateVersion = "26.05";
 
-    # Terminal par défaut (Thunar, xdg-open, les raccourcis "Terminal=true")
+    # Terminal par défaut (xdg-open, les raccourcis "Terminal=true")
     sessionVariables = {
       TERMINAL = "kitty";
     };
@@ -38,11 +38,12 @@
       appimage-run
       unrar
 
-      # --- Bureau Hyprland/Caelestia (remplace les applications KDE) ---
-      thunar # gestionnaire de fichiers (remplace Dolphin)
-      thunar-volman
-      thunar-archive-plugin
-      file-roller # archives (remplace Ark)
+      # --- Bureau Hyprland/Caelestia ---
+      kdePackages.dolphin # gestionnaire de fichiers (préféré à Thunar)
+      kdePackages.ark # archives (menu contextuel de Dolphin)
+      kdePackages.kdegraphics-thumbnailers # vignettes images/PDF dans Dolphin
+      kdePackages.ffmpegthumbs # vignettes vidéos dans Dolphin
+      kdePackages.kio-extras # protocoles et vignettes complémentaires
       imv # visionneuse d'images (remplace Gwenview)
       mpv # vidéo, avec bascule HDR auto en plein écran (voir plus bas)
       pwvucontrol # contrôle audio PipeWire
@@ -107,7 +108,7 @@
   dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
 
   # Neovim : le paquet nix fournit nvim.desktop avec "Terminal=true", mais
-  # Thunar ne trouve aucun terminal sous Hyprland pur ("Unable to find terminal
+  # aucun terminal n'est détecté sous Hyprland pur ("Unable to find terminal
   # required for application"). On force l'ouverture dans kitty.
   xdg.desktopEntries.nvim = {
     name = "Neovim";
@@ -128,15 +129,20 @@
     ];
   };
 
-  # Terminal par défaut pour les outils Xfce (exo) utilisés par Thunar
-  xdg.configFile."xfce4/helpers.rc".text = "TerminalEmulator=kitty\n";
-
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
       "text/html" = "librewolf.desktop";
       "x-scheme-handler/http" = "librewolf.desktop";
       "x-scheme-handler/https" = "librewolf.desktop";
+
+      # Dossiers → Dolphin, archives → Ark
+      "inode/directory" = "org.kde.dolphin.desktop";
+      "application/zip" = "org.kde.ark.desktop";
+      "application/x-tar" = "org.kde.ark.desktop";
+      "application/gzip" = "org.kde.ark.desktop";
+      "application/x-7z-compressed" = "org.kde.ark.desktop";
+      "application/vnd.rar" = "org.kde.ark.desktop";
 
       # Double-clic sur un fichier texte → kitty + nvim
       "text/plain" = "nvim.desktop";

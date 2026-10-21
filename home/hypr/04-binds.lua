@@ -1,6 +1,6 @@
 -- Raccourcis clavier/souris.
 -- Base : dotfiles caelestia-dots/caelestia (hypr/hyprland/keybinds.lua),
--- adaptés à tes applications (kitty, Librewolf, Neovim, thunar, Steam).
+-- adaptés à tes applications (kitty, Librewolf, Neovim, dolphin, Steam).
 -- Aide-mémoire complet dans MIGRATION-HYPRLAND.md.
 --
 -- Les actions "caelestia:..." sont des global shortcuts exposés par le shell :
@@ -246,7 +246,7 @@ hl.bind("SUPER + R", toggle_special("todo"))
 hl.bind("SUPER + T", hl.dsp.exec_cmd("kitty"))
 hl.bind("SUPER + W", hl.dsp.exec_cmd("librewolf"))
 hl.bind("SUPER + C", hl.dsp.exec_cmd("kitty -e nvim"))
-hl.bind("SUPER + E", hl.dsp.exec_cmd("thunar"))
+hl.bind("SUPER + E", hl.dsp.exec_cmd("dolphin"))
 hl.bind("SUPER + G", hl.dsp.exec_cmd("steam"))
 hl.bind("CTRL + ALT + V", hl.dsp.exec_cmd("pwvucontrol"))
 

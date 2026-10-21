@@ -15,7 +15,7 @@ hl.env("SDL_VIDEODRIVER", "wayland,x11,windows")
 hl.env("CLUTTER_BACKEND", "wayland")
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 
--- Terminal par défaut (Thunar, xdg-open, les raccourcis "Terminal=true")
+-- Terminal par défaut (xdg-open, les raccourcis "Terminal=true")
 hl.env("TERMINAL", "kitty")
 
 -- Session
