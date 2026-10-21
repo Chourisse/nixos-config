@@ -38,7 +38,7 @@ local todo_app_tag = "todo_app"
 -- ---------------------------------------------------------------------------
 
 -- Légère transparence partout, sauf en plein écran (le look "verre" de Caelestia)
-hl.window_rule({ match = { fullscreen = false }, opacity = "0.95 override" })
+hl.window_rule({ match = { fullscreen = false }, opacity = "1 override" })
 
 -- Centrer les fenêtres flottantes (sauf XWayland : ses popups sont des fenêtres)
 hl.window_rule({ match = { float = true, xwayland = false }, center = true })
