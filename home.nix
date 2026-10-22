@@ -29,6 +29,7 @@
       prismlauncher
 
       librewolf
+      brave
       standardnotes
       rustdesk-flutter
 
