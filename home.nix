@@ -22,7 +22,6 @@
       fastfetch
       (btop.override { rocmSupport = true; })
       topgrade
-      nvd
 
       mangohud
       protonup-qt
@@ -168,7 +167,7 @@
       shellAliases = {
         sc = "cd /etc/nixos && git add -A; and git diff --cached --quiet; or git commit -m \"Update\"; and git pull --rebase origin main; and git push";
         ff = "fastfetch";
-        rs = "sudo nixos-rebuild switch --flake /etc/nixos#NixOS";
+        rs = "nh os switch";
         tg = "topgrade -y";
       };
       interactiveShellInit = ''

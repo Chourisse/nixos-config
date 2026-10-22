@@ -9,7 +9,7 @@
       experimental-features = [ "nix-command" "flakes" ];
     };
     gc = {
-      automatic = true;
+      automatic = false;
       dates = "weekly";
       options = "--delete-older-than 14d";
       persistent = true;
@@ -21,7 +21,15 @@
     mesa-git.enable = true;
   };
 
-  programs.nix-ld.enable = true;
+  programs = {
+  nix-ld.enable = true;
+  nh = {
+    enable = true;
+    flake = "/etc/nixos";
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 7d --keep 5";
+    };
+  };
 
   environment.systemPackages = with pkgs; [
     git
