@@ -1,60 +1,61 @@
-## Commandes
+## Commands
 
-| Commande | Action |
+| Command | Action |
 |---|---|
-| `rs` | `nixos-rebuild switch` (applique la config) |
-| `sc` | commit "Update" + pull + push sur GitHub |
-| `tg` | `topgrade` (met tout à jour) |
+| `rs` | `nixos-rebuild switch` (applies the config) |
+| `sc` | commit "Update" + pull + push to GitHub |
+| `tg` | `topgrade` (updates everything) |
 | `ff` | `fastfetch` |
 
-## Raccourcis clavier
+## Keyboard shortcuts
 
-### Shell Caelestia
+### Caelestia shell
 
-| Raccourci | Action |
+| Shortcut | Action |
 |---|---|
-| `Super` (appui bref) / `Super+Espace` | Launcher |
-| `Super+N` | Barre latérale / notifications |
-| `Super+K` | Afficher tous les panneaux |
-| `Ctrl+Alt+Delete` | Menu session |
-| `Super+L` | Verrouiller l'écran |
-| `Super+Maj+L` | Mise en veille |
+| `Super` (short press) / `Super+Space` | Launcher |
+| `Super+N` | Sidebar / notifications |
+| `Super+K` | Show all panels |
+| `Ctrl+Alt+Delete` | Session menu |
+| `Super+L` | Lock screen |
+| `Super+Shift+L` | Sleep |
 
-### Fenêtres
+### Windows
 
-| Raccourci | Action |
+| Shortcut | Action |
 |---|---|
-| `Super+F` | Plein écran |
-| `Super+Alt+F` | Maximiser |
-| `Super+Q` | Fermer la fenêtre |
+| `Super+F` | Fullscreen |
+| `Super+Alt+F` | Maximize |
+| `Super+Q` | Close window |
+| `Super` + left click (hold) | Move window |
 
-### Tiroirs (workspaces spéciaux)
+### Drawers (special workspaces)
 
-| Raccourci | Action |
+| Shortcut | Action |
 |---|---|
-| `Ctrl+Maj+Échap` | Moniteur système (btop) |
+| `Ctrl+Shift+Esc` | System monitor (btop) |
 
 ### Applications
 
-| Raccourci | Action |
+| Shortcut | Action |
 |---|---|
 | `Super+Z` | Terminal (kitty) |
-| `Super+W` | Navigateur (LibreWolf) |
-| `Super+E` | Gestionnaire de fichiers (Dolphin) |
+| `Super+W` | Browser (LibreWolf) |
+| `Super+E` | File manager (Dolphin) |
 | `Super+S` | Steam |
 
-### Captures et enregistrement
+### Screenshots and recording
 
-| Raccourci | Action |
+| Shortcut | Action |
 |---|---|
-| `Super+Maj+Alt+S` | Capture (sélection) |
+| `Super+Shift+Alt+S` | Screenshot (selection) |
 
-### Presse-papiers et emoji
+### Clipboard and emoji
 
-| Raccourci | Action |
+| Shortcut | Action |
 |---|---|
-| `Super+V` | Historique du presse-papiers (cliphist + fuzzel) |
-| `Super+.` | Sélecteur d'emoji |
+| `Super+V` | Clipboard history (cliphist + fuzzel) |
+| `Super+.` | Emoji picker |
 
 ## Installation
 

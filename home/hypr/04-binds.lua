@@ -27,6 +27,7 @@ hl.bind("SUPER + SHIFT + L", hl.dsp.exec_cmd("systemctl suspend"), locked)
 hl.bind("SUPER + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
 hl.bind("SUPER + ALT + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
 hl.bind("SUPER + Q", hl.dsp.window.close())
+hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
 
 hl.bind("CTRL + SHIFT + Escape", toggle_sysmon)
 

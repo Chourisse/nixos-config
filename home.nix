@@ -173,6 +173,15 @@
       interactiveShellInit = ''
         set fish_greeting
         fastfetch
+
+        function nix
+            if test "$argv[1]" = run
+                nohup command nix run $argv[2..] >/dev/null 2>&1 &
+                disown
+            else
+                command nix $argv
+            end
+        end
       '';
     };
   };
