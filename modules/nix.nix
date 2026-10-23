@@ -7,6 +7,10 @@
     settings = {
       auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];
+      extra-substituters = [ "https://deadlock-mod-manager.cachix.org" ];
+      extra-trusted-public-keys = [
+        "deadlock-mod-manager.cachix.org-1:wUjtzL6yN2i9zTq1YrXHBr0mx3LP7tBGsosk3N+/A/M="
+      ];
     };
     gc = {
       automatic = false;

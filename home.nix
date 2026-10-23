@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, inputs, ... }:
 
 {
   imports = [
@@ -17,6 +17,8 @@
 
     packages = with pkgs; [
 
+      inputs.deadlock-mod-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
+
       neovim
       kitty
       fastfetch
@@ -26,7 +28,6 @@
       mangohud
       protonup-qt
       prismlauncher
-      deadlock-mod-manager
 
       librewolf
       brave
