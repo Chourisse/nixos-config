@@ -26,6 +26,7 @@
       mangohud
       protonup-qt
       prismlauncher
+      deadlock-mod-manager
 
       librewolf
       brave
