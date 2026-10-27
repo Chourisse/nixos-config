@@ -90,11 +90,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1793105158,
-        "narHash": "sha256-pyQV00r0ATf/J7dRGqmRbuOsQvBOWGue97HtCM4HZmg=",
+        "lastModified": 1793128333,
+        "narHash": "sha256-uOQQZCcbs09Du8Szl5lRfNBFbYECKFCqkm5jvN/T0bw=",
         "owner": "deadlock-mod-manager",
         "repo": "deadlock-mod-manager",
-        "rev": "e937f658952232293ba2d4665faa5e47240fbc52",
+        "rev": "7fd9a1a7ab6c6adeb82964a0dbf86c7c8739ff0f",
         "type": "github"
       },
       "original": {
@@ -179,11 +179,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793033486,
-        "narHash": "sha256-fXVURa0+CSCgaxLt8tmPNJq2U+fGYOwbk5j2YUe7kSc=",
+        "lastModified": 1793124281,
+        "narHash": "sha256-KdGTOgYXgMDA/ymTV10yLMt9tOjz9EmTgnTvaD+bhe4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "7db163b2aee7e410e396b48aed02f646d742b9b8",
+        "rev": "1e3ebeb683d055d1675d3f64e6d2b186cb2ee504",
         "type": "github"
       },
       "original": {
