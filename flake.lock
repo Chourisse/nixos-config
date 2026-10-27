@@ -90,11 +90,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1793046944,
-        "narHash": "sha256-y24QasLOzCI0ZK0itQgR5iTg/q0RDkAch2t4ycsKxRA=",
+        "lastModified": 1793052885,
+        "narHash": "sha256-pFNmVLguIrWF3chMugVW0mAGd1+Qx+oYSdbg6J7U+n8=",
         "owner": "deadlock-mod-manager",
         "repo": "deadlock-mod-manager",
-        "rev": "a8eff6d9617e453147d21f3fa4b41040cb9728c2",
+        "rev": "2d6f6bac1ff3fe1f398bfecbb139dd62cc10ca60",
         "type": "github"
       },
       "original": {
