@@ -43,7 +43,7 @@
     # power_save=0 : désactive le power saving côté iwlwifi
     # uapsd_disable=1 : désactive U-APSD, connu pour causer des instabilités
     # avec certaines box/routeurs sur AX200
-    options iwlwifi power_save=0 uapsd_disable=1
+    options iwlwifi power_save=0 uapsd_disable=1 disable_11ax=1
     # Domaine réglementaire FR : puissance d'émission maximale légale
     options cfg80211 ieee80211_regdom="FR"
   '';
