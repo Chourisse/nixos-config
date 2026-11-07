@@ -30,7 +30,7 @@
       prismlauncher
 
       librewolf
-      brave
+      ungoogled-chromium
       standardnotes
       rustdesk-flutter
 
