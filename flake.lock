@@ -11,11 +11,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793423030,
-        "narHash": "sha256-90s3Me2ICTCL9bgjojzAwyzhRwhhSgPITLO2gRy606A=",
+        "lastModified": 1793858663,
+        "narHash": "sha256-FbQWx4YFHt+UAO2oEX5b3HWbZcrmWIwOxwpsjjHPkwc=",
         "owner": "caelestia-dots",
         "repo": "cli",
-        "rev": "fdb3e47038c77ec8e7bb6010ffbcae00501d420b",
+        "rev": "6bde2df241ccc0cda4baa51216ebf017fe042eb7",
         "type": "github"
       },
       "original": {
@@ -34,11 +34,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1794057837,
-        "narHash": "sha256-M34xfxC5+qaYnHEbU29L2aNSSmyMTNPLVo8fO1jE+T8=",
+        "lastModified": 1794111160,
+        "narHash": "sha256-jyOJ3CWennG6NFbWj8wRBfpuuUJyiCYQkYOfSTDwLnQ=",
         "owner": "caelestia-dots",
         "repo": "shell",
-        "rev": "cb43fc711632f0847c57a2b5974c54daddea3016",
+        "rev": "f80a98079b19f91f7d8a24218d068e77acc00025",
         "type": "github"
       },
       "original": {
@@ -90,11 +90,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1794089656,
-        "narHash": "sha256-gM/YibhVR21JzsKc3un+JM8gbbWZFmEfHU6WORrhsL4=",
+        "lastModified": 1794103043,
+        "narHash": "sha256-alWgxXmrGx9LQLmw5IBqnLDL+qiE5QVRzX3bEIgrGF4=",
         "owner": "deadlock-mod-manager",
         "repo": "deadlock-mod-manager",
-        "rev": "933a8bc444bb6d64fd873c6fd7368faf381e3681",
+        "rev": "b23a2b4856be0c4fcea5df96bb3fc3124dab8dca",
         "type": "github"
       },
       "original": {
