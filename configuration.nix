@@ -7,6 +7,7 @@
     ./modules/boot.nix
     ./modules/hardware.nix
     ./modules/network.nix
+    ./modules/wifi-rtw89.nix
     ./modules/locale.nix
     ./modules/desktop.nix
     ./modules/gaming.nix

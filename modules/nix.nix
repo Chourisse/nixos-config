@@ -12,12 +12,7 @@
         "deadlock-mod-manager.cachix.org-1:wUjtzL6yN2i9zTq1YrXHBr0mx3LP7tBGsosk3N+/A/M="
       ];
     };
-    gc = {
-      automatic = false;
-      dates = "weekly";
-      options = "--delete-older-than 14d";
-      persistent = true;
-    };
+    gc.automatic = false;
   };
 
   chaotic = {
@@ -26,12 +21,12 @@
   };
 
   programs = {
-  nix-ld.enable = true;
-  nh = {
-    enable = true;
-    flake = "/etc/nixos";
-    clean.enable = true;
-    clean.extraArgs = "--keep-since 7d --keep 5";
+    nix-ld.enable = true;
+    nh = {
+      enable = true;
+      flake = "/etc/nixos";
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 7d --keep 5";
     };
   };
 

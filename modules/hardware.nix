@@ -3,6 +3,7 @@
 {
   hardware = {
     enableRedistributableFirmware = true;
+    wirelessRegulatoryDatabase = true;
     bluetooth.enable = true;
     amdgpu.overdrive.enable = true;
 
@@ -15,7 +16,12 @@
     };
   };
 
-  zramSwap.enable = true;
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 25;
+    priority = 10;
+  };
 
   fileSystems = let
     btrfsOpts = [ "compress=zstd" "noatime" ];
