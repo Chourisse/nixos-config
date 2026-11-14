@@ -54,11 +54,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1794566218,
-        "narHash": "sha256-d4n7mUUuvOLfz966RjqTIyxE5JYKRHI/MWpf2/2Enjo=",
+        "lastModified": 1794592226,
+        "narHash": "sha256-ud7kuUgITpvfE+YHXPEs5H5MnLVR1zRkKxeOtYOGWt4=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "9a21b0f205cc1e4f007006df473fe617bd6b7e86",
+        "rev": "8dbea94d5aff73a224d85f0dbdea95539df01105",
         "type": "github"
       },
       "original": {
@@ -90,11 +90,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1794583885,
-        "narHash": "sha256-tLC1HRFlSTQPb7olXpouQws36hiEfDyy3H+PiSVs4mU=",
+        "lastModified": 1794612204,
+        "narHash": "sha256-ANBvDOlNr08LSijrwJKdxQleDexwyPRpKtDTSnKaWZ8=",
         "owner": "deadlock-mod-manager",
         "repo": "deadlock-mod-manager",
-        "rev": "eccdcd48b14d4eeb43000be8139facf43dddf114",
+        "rev": "7c7c90cc256f1599701f4a3e8fa5e911003f1c75",
         "type": "github"
       },
       "original": {
